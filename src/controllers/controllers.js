@@ -36,8 +36,8 @@ const buildStatus = async (req, res) => {
 }
 
 const buildProfile = async (req, res) => {
-  const { } = req.body
-  const result = await buildProfileImage()
+  const { user, usageCommands, i18n } = req.body
+  const result = await buildProfileImage(user, usageCommands, i18n)
   res.send(result.toJSON())
 }
 
