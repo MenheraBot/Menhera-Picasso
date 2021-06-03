@@ -1,0 +1,26 @@
+{
+  "name": "menhera-picasso",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ySnoopyDogy/Menhera-Picasso.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ySnoopyDogy/Menhera-Picasso/issues"
+  },
+  "homepage": "https://github.com/ySnoopyDogy/Menhera-Picasso#readme",
+  "dependencies": {
+    "canvas": "^2.8.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "millify": "^4.0.0"
+  }
+}
