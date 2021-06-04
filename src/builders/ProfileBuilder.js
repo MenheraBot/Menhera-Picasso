@@ -1,4 +1,4 @@
-const { getRing, getBirthday, getVote, getHundred, getMenheraDev, getBanido, getBravery, getBrilliance, getBadgeOne } = require("../ImageReader");
+const { getRing, getBirthday, getVote, getHundred, getMenheraDev, getBanido, getDeveloper, getBravery, getBrilliance, getBadgeOne, getBalance } = require("../ImageReader");
 const CanvasImport = require('canvas')
 
 const shadeColor = (color, percent) => {
@@ -12,53 +12,52 @@ const shadeColor = (color, percent) => {
   return shadedColor;
 }
 
-const ProfileBadges = {
-  1: (await getBadgeOne()),
-  6: (await getBanido()),
-  7: (await getMenheraDev()),
-  8: (await getBirthday()),
+const ProfileBadges = {}
+
+const start = async () => {
+  ProfileBadges[1] = await getBadgeOne()
+  ProfileBadges[6] = await getBanido()
+  ProfileBadges[7] = await getMenheraDev()
+  ProfileBadges[8] = await getBirthday()
+  ProfileBadges['HOUSE_BRAVERY'] = await getBravery()
+  ProfileBadges['HOUSE_BRILLIANCE'] = await getBrilliance()
+  ProfileBadges['HOUSE_BALANCE'] = await getBalance()
+  ProfileBadges['EARLY_VERIFIED_DEVELOPER'] = await getDeveloper()
+  ProfileBadges['ring'] = await getRing()
+  ProfileBadges['vote'] = await getVote()
+  ProfileBadges['hundred'] = await getHundred()
 }
+
 
 const captalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 
 const getUserBadgesLink = async (user) => {
   const images = [];
 
-  if (user.flagsArray && user.flagsArray.length > 0) {
-    user.flagsArray.forEach(async (flag) => {
-      switch (flag) {
-        case 'HOUSE_BRAVERY':
-          images.push(await getBravery());
-          break;
-        case 'HOUSE_BRILLIANCE':
-          images.push(await getBrilliance());
-          break;
-        case 'HOUSE_BALANCE':
-          images.push(await getBrilliance());
-          break;
-        case 'EARLY_VERIFIED_DEVELOPER':
-          images.push(await getDeveloper());
-          break;
-      }
-    });
-  }
-
   if (user?.casado !== 'false') {
-    const ringEmoji = await CanvasImport.loadImage(await getRing());
+    const ringEmoji = await CanvasImport.loadImage(ProfileBadges['ring']);
     images.push(ringEmoji);
   }
 
   if (user.voteCooldown && parseInt(user?.voteCooldown) > Date.now()) {
-    const voteEmoji = await CanvasImport.loadImage(await getVote());
+    const voteEmoji = await CanvasImport.loadImage(ProfileBadges['vote']);
     images.push(voteEmoji);
   }
 
   if (user.votos > 100) {
-    const hundredVoteEmoji = await CanvasImport.loadImage(await getHundred());
+    const hundredVoteEmoji = await CanvasImport.loadImage(ProfileBadges['hundred']);
     images.push(hundredVoteEmoji);
   }
 
-  if (user.badges.length > 0) {
+  if (user.flagsArray?.length > 0) {
+    user.flagsArray.map(async a => {
+      const buffer = ProfileBadges[a]
+      const img = await CanvasImport.loadImage(buffer)
+      images.push(img)
+    })
+  }
+
+  if (user.badges?.length > 0) {
     for (const i in user.badges) {
       const { id } = user.badges[i];
       const buffer = ProfileBadges[id];
@@ -71,7 +70,7 @@ const getUserBadgesLink = async (user) => {
 }
 
 
-const buildProfileImage = async (user, usageCommands, i18n) => {
+const buildProfileImage = async (user, marry, usageCommands, i18n) => {
   // Criação da Área de Trabalho
   const canvas = CanvasImport.createCanvas(1080, 720);
   const ctx = canvas.getContext('2d');
@@ -139,8 +138,8 @@ const buildProfileImage = async (user, usageCommands, i18n) => {
     const mostUsedCommand = usageCommands.array[0];
     ctx.font = 'bold 40px Sans';
     ctx.fillStyle = 'white';
-    ctx.fillText(ctx.getLines(`${user.username} ${i18n.zero} ${usedCommands} ${i18n.um} ${captalize(mostUsedCommand.name)}, ${i18n.dois} ${mostUsedCommandCount} ${i18n.tres}`).join('\n'), 20, 600);
-    ctx.strokeText(ctx.getLines(`${user.username} ${i18n.zero} ${usedCommands} ${i18n.um} ${captalize(mostUsedCommand.name)}, ${i18n.dois} ${mostUsedCommandCount} ${i18n.tres}`).join('\n'), 20, 600);
+    ctx.fillText(ctx.getLines(`${user.username} ${i18n.zero} ${usedCommands} ${i18n.um} ${captalize(mostUsedCommand.name)}, ${i18n.dois} ${mostUsedCommand.count} ${i18n.tres}`, 1000).join('\n'), 20, 600);
+    ctx.strokeText(ctx.getLines(`${user.username} ${i18n.zero} ${usedCommands} ${i18n.um} ${captalize(mostUsedCommand.name)}, ${i18n.dois} ${mostUsedCommand.count} ${i18n.tres}`, 1000).join('\n'), 20, 600);
   }
 
   // Casado
@@ -167,11 +166,11 @@ const buildProfileImage = async (user, usageCommands, i18n) => {
   ctx.fillText(user.mamou, 980, 425);
   ctx.strokeText(user.mamou, 980, 425);
 
-  const badgesLink = await getUserBadgesLink(user);
+  const badgesImages = await getUserBadgesLink(user);
 
-  if (badgesLink) {
+  if (badgesImages) {
     let number = 0;
-    badgesLink.forEach((img) => {
+    badgesImages.forEach((img) => {
       ctx.drawImage(img, 230 + (number * 64), 170, 64, 64);
       number++;
     });
@@ -180,4 +179,4 @@ const buildProfileImage = async (user, usageCommands, i18n) => {
   return canvas.toBuffer();
 }
 
-module.exports = { buildProfileImage }
+module.exports = { buildProfileImage, start }

@@ -1,4 +1,3 @@
-const { rsvgVersion } = require("canvas")
 const { buildAstolfoImage } = require("../builders/AstolfoBuilder")
 const { buildPhiloImage } = require("../builders/PhiloBuilder")
 const { buildProfileImage } = require("../builders/ProfileBuilder")
@@ -36,8 +35,8 @@ const buildStatus = async (req, res) => {
 }
 
 const buildProfile = async (req, res) => {
-  const { user, usageCommands, i18n } = req.body
-  const result = await buildProfileImage(user, usageCommands, i18n)
+  const { user, marry, usageCommands, i18n } = req.body
+  const result = await buildProfileImage(user, marry, usageCommands, i18n)
   res.send(result.toJSON())
 }
 

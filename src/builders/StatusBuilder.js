@@ -1,6 +1,36 @@
-const { getStatus, getHeart, getMana, getXp, getLevel, getDamage, getArmor, getAp, getGem, getClass, getJob } = require("../ImageReader");
+const { getStatus, getHeart, getMana, getXp, getDamage, getArmor, getAp, getGem, getClass, getJob, getLevel } = require("../ImageReader");
 const CanvasImport = require('canvas')
-const millify = require('millify')
+const { millify } = require('millify');
+
+const LoadedIcons = {}
+
+const start = async () => {
+  const statusimage = await getStatus()
+  const heartIcon = await getHeart()
+  const manaIcon = await getMana()
+  const xpIcon = await getXp()
+  const levelIcon = await getLevel()
+  const dmgIcon = await getDamage()
+  const armorIcon = await getArmor()
+  const magicIcon = await getAp()
+  const gemIcon = await getGem()
+  const classIcon = await getClass()
+  const jobIcon = await getJob()
+
+
+  LoadedIcons.status = await CanvasImport.loadImage(statusimage);
+  LoadedIcons.heart = await CanvasImport.loadImage(heartIcon)
+  LoadedIcons.mana = await CanvasImport.loadImage(manaIcon)
+  LoadedIcons.xp = await CanvasImport.loadImage(xpIcon)
+  LoadedIcons.level = await CanvasImport.loadImage(levelIcon)
+  LoadedIcons.damage = await CanvasImport.loadImage(dmgIcon)
+  LoadedIcons.armor = await CanvasImport.loadImage(armorIcon)
+  LoadedIcons.magic = await CanvasImport.loadImage(magicIcon)
+  LoadedIcons.gem = await CanvasImport.loadImage(gemIcon)
+  LoadedIcons.class = await CanvasImport.loadImage(classIcon)
+  LoadedIcons.job = await CanvasImport.loadImage(jobIcon)
+
+}
 
 const buildStatusImage = async (user, userAvatarLink, i18n) => {
   /* ---------------------- CREATE CANVAS -------------------------- */
@@ -11,17 +41,6 @@ const buildStatusImage = async (user, userAvatarLink, i18n) => {
   /* ---------------------- LOADING IMAGES -------------------------- */
 
   const avatarImage = await CanvasImport.loadImage(userAvatarLink);
-  const profileImg = await CanvasImport.loadImage(await getStatus());
-  const heartIcon = await CanvasImport.loadImage(await getHeart());
-  const manaIcon = await CanvasImport.loadImage(await getMana());
-  const xpIcon = await CanvasImport.loadImage(await getXp());
-  const levelIcon = await CanvasImport.loadImage(await getLevel());
-  const dmgIcon = await CanvasImport.loadImage(await getDamage());
-  const armorIcon = await CanvasImport.loadImage(await getArmor());
-  const magicIcon = await CanvasImport.loadImage(await getAp());
-  const gemIcon = await CanvasImport.loadImage(await getGem());
-  const classIcon = await CanvasImport.loadImage(await getClass());
-  const jobIcon = await CanvasImport.loadImage(await getJob());
 
   const roundedImage = await ctx.roundImageCanvas(avatarImage, 180, 180);
 
@@ -60,11 +79,11 @@ const buildStatusImage = async (user, userAvatarLink, i18n) => {
   /* ---------------------- ADD ALL IMAGES -------------------------- */
 
   ctx.drawImage(roundedImage, 35, 25, 120, 120);
-  ctx.drawImage(profileImg, 0, 0, 582, 275);
-  ctx.drawImage(heartIcon, 265, 57, 42, 42);
-  ctx.drawImage(manaIcon, 275, 85, 28, 28);
-  ctx.drawImage(xpIcon, 280, 115, 24, 24);
-  ctx.drawImage(levelIcon, 160, 80, 48, 48);
+  ctx.drawImage(LoadedIcons.status, 0, 0, 582, 275);
+  ctx.drawImage(LoadedIcons.heart, 265, 57, 42, 42);
+  ctx.drawImage(LoadedIcons.mana, 275, 85, 28, 28);
+  ctx.drawImage(LoadedIcons.xp, 280, 115, 24, 24);
+  ctx.drawImage(LoadedIcons.level, 160, 80, 48, 48);
 
   /* ---------------------- WRITE TEXT -------------------------- */
 
@@ -88,8 +107,8 @@ const buildStatusImage = async (user, userAvatarLink, i18n) => {
   ctx.fillStyle = '#fff';
   ctx.font = 'bold 38px Sans';
   ctx.lineWidth = 2;
-  ctx.fillText(member.tag, 160, 32);
-  ctx.strokeText(member.tag, 160, 32);
+  ctx.fillText(user.tag, 160, 32);
+  ctx.strokeText(user.tag, 160, 32);
 
   // LEVEL
 
@@ -107,40 +126,40 @@ const buildStatusImage = async (user, userAvatarLink, i18n) => {
   ctx.lineWidth = 1;
 
   ctx.fillStyle = 'red';
-  ctx.drawImage(dmgIcon, 60, 160, 28, 28);
+  ctx.drawImage(LoadedIcons.damage, 60, 160, 28, 28);
   ctx.fillText(`${i18n.damage}: ${dmg}`, 90, 180);
 
   // PROTECTION
 
   ctx.fillStyle = '#295564';
-  ctx.drawImage(armorIcon, 60, 200, 28, 28);
+  ctx.drawImage(LoadedIcons.armor, 60, 200, 28, 28);
   ctx.fillText(`${i18n.armor}: ${ptr}`, 90, 220);
 
   // MAGIC POWER
 
   ctx.fillStyle = 'purple';
-  ctx.drawImage(magicIcon, 60, 235, 26, 26);
+  ctx.drawImage(LoadedIcons.magic, 60, 235, 26, 26);
   ctx.fillText(`${i18n.ap}: ${ap}`, 90, 255);
 
   // GEMAS
 
   ctx.fillStyle = 'aqua';
-  ctx.drawImage(gemIcon, 270, 235, 26, 26);
+  ctx.drawImage(LoadedIcons.gem, 270, 235, 26, 26);
   ctx.fillText(`${i18n.money}: ${user.money}`, 295, 255);
 
   // CLASSE
 
   ctx.fillStyle = '#fff';
-  ctx.drawImage(classIcon, 270, 160, 28, 28);
+  ctx.drawImage(LoadedIcons.class, 270, 160, 28, 28);
   ctx.fillText(i18n.userClass, 300, 180);
 
   // TRABALHO
   if (user?.jobId > 0) {
     ctx.fillStyle = 'yellow';
-    ctx.drawImage(jobIcon, 290, 200, 28, 28);
+    ctx.drawImage(LoadedIcons.job, 290, 200, 28, 28);
     ctx.fillText(i18n.userJob, 320, 220);
   }
   return canvas.toBuffer();
 }
 
-module.exports = { buildStatusImage }
+module.exports = { buildStatusImage, start }
