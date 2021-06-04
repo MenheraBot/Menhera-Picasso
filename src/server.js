@@ -6,7 +6,7 @@ const app = express()
 const routes = require('./routes')
 
 const initServer = async () => {
-  await startAllNeeded()
+  await startAllNeeded().then(() => console.log('[START] All dependencies started'))
   app.use(cors())
   app.use(express.json())
 
@@ -16,7 +16,9 @@ const initServer = async () => {
     res.sendStatus(404);
   })
 
-  app.listen(2080);
+  app.listen(2080, () => {
+    console.log('[SERVER] Menhera Picasso started at port 2080')
+  });
 }
 
 initServer();
