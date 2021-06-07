@@ -1,33 +1,33 @@
 const fs = require('fs/promises')
 
-const returnBuferedImage = async (image) => {
+const returnBuferedImage = (image) => {
   return fs.readFile(`src/images/${image}.png`)
 }
 
-const getAp = async () => returnBuferedImage('ap');
-const getArmor = async () => returnBuferedImage('armor');
-const getAstolfo = async () => returnBuferedImage('astolfo');
-const getBadgeOne = async () => returnBuferedImage('badge1');
-const getBalance = async () => returnBuferedImage('balance');
-const getBanido = async () => returnBuferedImage('banido');
-const getBirthday = async () => returnBuferedImage('birthday');
-const getBravery = async () => returnBuferedImage('bravery');
-const getBrilliance = async () => returnBuferedImage('brilliance');
-const getClass = async () => returnBuferedImage('class');
-const getDamage = async () => returnBuferedImage('damage');
-const getDeveloper = async () => returnBuferedImage('developer');
-const getGem = async () => returnBuferedImage('gem');
-const getHeart = async () => returnBuferedImage('heart');
-const getHundred = async () => returnBuferedImage('hundred');
-const getJob = async () => returnBuferedImage('job');
-const getLevel = async () => returnBuferedImage('level');
-const getMana = async () => returnBuferedImage('mana');
-const getMenheraDev = async () => returnBuferedImage('menheradev');
-const getPhilo = async () => returnBuferedImage('philo');
-const getRing = async () => returnBuferedImage('ring');
-const getStatus = async () => returnBuferedImage('status');
-const getVote = async () => returnBuferedImage('vote');
-const getXp = async () => returnBuferedImage('xp');
+const getAp = () => returnBuferedImage('ap');
+const getArmor = () => returnBuferedImage('armor');
+const getAstolfo = () => returnBuferedImage('astolfo');
+const getBadgeOne = () => returnBuferedImage('badge1');
+const getBalance = () => returnBuferedImage('balance');
+const getBanido = () => returnBuferedImage('banido');
+const getBirthday = () => returnBuferedImage('birthday');
+const getBravery = () => returnBuferedImage('bravery');
+const getBrilliance = () => returnBuferedImage('brilliance');
+const getClass = () => returnBuferedImage('class');
+const getDamage = () => returnBuferedImage('damage');
+const getDeveloper = () => returnBuferedImage('developer');
+const getGem = () => returnBuferedImage('gem');
+const getHeart = () => returnBuferedImage('heart');
+const getHundred = () => returnBuferedImage('hundred');
+const getJob = () => returnBuferedImage('job');
+const getLevel = () => returnBuferedImage('level');
+const getMana = () => returnBuferedImage('mana');
+const getMenheraDev  () => returnBuferedImage('menheradev');
+const getPhilo = () => returnBuferedImage('philo');
+const getRing = () => returnBuferedImage('ring');
+const getStatus = () => returnBuferedImage('status');
+const getVote = () => returnBuferedImage('vote');
+const getXp = () => returnBuferedImage('xp');
 
 module.exports = {
   getAp,
