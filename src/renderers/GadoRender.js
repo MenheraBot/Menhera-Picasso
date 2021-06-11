@@ -12,7 +12,7 @@ const buildGadoImage = async (link) => {
   const bufferedFilter = await yellowFilter();
   const filter = CanvasImport.loadImage(bufferedFilter)
   ctx.drawImage(userImage, 695, 0, 455, 447);
-  ctx.drawImage(userImage, 695, 0, 455, 477);
+  ctx.drawImage(filter, 695, 0, 455, 477);
   ctx.drawImage(gadoImage, 0, 0, 1200, 526);
 
   return canvas.toBuffer();
