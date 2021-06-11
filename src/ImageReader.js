@@ -1,7 +1,7 @@
 const fs = require('fs/promises')
 
 const returnBuferedImage = (image) => {
-  return fs.readFile(`src/images/${image}.png`)
+  return fs.readFileSync(`src/images/${image}.png`)
 }
 
 const getAp = () => returnBuferedImage('ap');
