@@ -22,7 +22,7 @@ const getHundred = () => returnBuferedImage('hundred');
 const getJob = () => returnBuferedImage('job');
 const getLevel = () => returnBuferedImage('level');
 const getMana = () => returnBuferedImage('mana');
-const getMenheraDev  () => returnBuferedImage('menheradev');
+const getMenheraDev = () => returnBuferedImage('menheradev');
 const getPhilo = () => returnBuferedImage('philo');
 const getRing = () => returnBuferedImage('ring');
 const getStatus = () => returnBuferedImage('status');
