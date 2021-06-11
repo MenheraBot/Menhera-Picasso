@@ -16,6 +16,7 @@ const getBrilliance = async () => returnBuferedImage('brilliance');
 const getClass = async () => returnBuferedImage('class');
 const getDamage = async () => returnBuferedImage('damage');
 const getDeveloper = async () => returnBuferedImage('developer');
+const getGado = async () => returnBuferedImage('gado')
 const getGem = async () => returnBuferedImage('gem');
 const getHeart = async () => returnBuferedImage('heart');
 const getHundred = async () => returnBuferedImage('hundred');
@@ -42,6 +43,7 @@ module.exports = {
   getArmor,
   getAstolfo,
   getClass,
+  getGado,
   getDamage,
   getGem,
   getHeart,
