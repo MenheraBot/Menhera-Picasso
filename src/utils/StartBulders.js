@@ -1,6 +1,6 @@
-const profile = require('../builders/ProfileBuilder')
+const profile = require('../renderers/ProfileRender')
 const canvas = require('./CanvasPrototypes')
-const status = require('../builders/StatusBuilder')
+const status = require('../renderers/StatusRender')
 const startAllNeeded = async () => {
   await profile.start()
   await canvas.start()

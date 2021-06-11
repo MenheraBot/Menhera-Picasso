@@ -28,6 +28,7 @@ const getRing = () => returnBuferedImage('ring');
 const getStatus = () => returnBuferedImage('status');
 const getVote = () => returnBuferedImage('vote');
 const getXp = () => returnBuferedImage('xp');
+const yellowFilter = () => returnBuferedImage('filter');
 
 module.exports = {
   getAp,
@@ -42,6 +43,7 @@ module.exports = {
   getArmor,
   getAstolfo,
   getClass,
+  getGado,
   getDamage,
   getGem,
   getHeart,
@@ -49,6 +51,7 @@ module.exports = {
   getJob,
   getLevel,
   getMana,
+  yellowFilter,
   getPhilo,
   getRing,
   getVote,

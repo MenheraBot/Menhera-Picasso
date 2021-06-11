@@ -3,12 +3,13 @@ const controller = require('./controllers/controllers')
 
 const router = Router()
 
-router.get('/astolfo', controller.buildAstolfo)
-router.get('/philo', controller.buildPhilo)
-router.get('/ship', controller.buildShip)
-router.get('/trisal', controller.buildTrisal)
-router.get('/status', controller.buildStatus)
-router.get('/profile', controller.buildProfile)
+router.get('/astolfo', controller.renderAstolfo)
+router.get('/philo', controller.renderPhilo)
+router.get('/ship', controller.renderShip)
+router.get('/trisal', controller.renderTrisal)
+router.get('/status', controller.renderStatus)
+router.get('/profile', controller.renderProfile)
+router.get('/gado', controller.renderGado)
 
 
 module.exports = router;
