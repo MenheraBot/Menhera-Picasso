@@ -30,6 +30,8 @@ const getStatus = async () => returnBuferedImage('status');
 const getVote = async () => returnBuferedImage('vote');
 const getXp = async () => returnBuferedImage('xp');
 
+const yellowFilter = async () => returnBuferedImage('filter');
+
 module.exports = {
   getAp,
   getBadgeOne,
@@ -51,6 +53,7 @@ module.exports = {
   getJob,
   getLevel,
   getMana,
+  yellowFilter,
   getPhilo,
   getRing,
   getVote,
