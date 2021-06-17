@@ -29,6 +29,7 @@ const getStatus = () => returnBuferedImage('status');
 const getVote = () => returnBuferedImage('vote');
 const getXp = () => returnBuferedImage('xp');
 const yellowFilter = () => returnBuferedImage('filter');
+const getGado = () => returnBuferedImage('gado');
 
 module.exports = {
   getAp,
