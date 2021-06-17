@@ -1,4 +1,4 @@
-const fs = require('fs/promises')
+const fs = require('fs')
 
 const returnBuferedImage = (image) => {
   return fs.readFileSync(`src/images/${image}.png`)

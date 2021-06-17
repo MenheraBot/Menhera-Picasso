@@ -1,4 +1,4 @@
-const { getGado, yellowFilter } = require("../ImageReader");
+const { getGado } = require("../ImageReader");
 const CanvasImport = require('canvas')
 
 const buildGadoImage = async (link) => {
