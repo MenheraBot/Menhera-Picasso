@@ -1,7 +1,7 @@
 const { CanvasRenderingContext2D, createCanvas } = require('canvas');
 
 module.exports = class ProyoTypes {
-  static async start() {
+  static start() {
     CanvasRenderingContext2D.prototype.roundImageCanvas = function roundImageCanvas(img, w = img.width, h = img.height, r = w * 0.5) {
       const canvas = createCanvas(w, h);
       const ctx = canvas.getContext('2d');

@@ -5,17 +5,17 @@ const { millify } = require('millify');
 const LoadedIcons = {}
 
 const start = async () => {
-  const statusimage = await getStatus()
-  const heartIcon = await getHeart()
-  const manaIcon = await getMana()
-  const xpIcon = await getXp()
-  const levelIcon = await getLevel()
-  const dmgIcon = await getDamage()
-  const armorIcon = await getArmor()
-  const magicIcon = await getAp()
-  const gemIcon = await getGem()
-  const classIcon = await getClass()
-  const jobIcon = await getJob()
+  const statusimage = getStatus()
+  const heartIcon = getHeart()
+  const manaIcon = getMana()
+  const xpIcon = getXp()
+  const levelIcon = getLevel()
+  const dmgIcon = getDamage()
+  const armorIcon = getArmor()
+  const magicIcon = getAp()
+  const gemIcon = getGem()
+  const classIcon = getClass()
+  const jobIcon = getJob()
 
 
   LoadedIcons.status = await CanvasImport.loadImage(statusimage);

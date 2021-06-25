@@ -9,7 +9,7 @@ const buildPhiloImage = async (text) => {
   ctx.font = 'bold 58px Sans';
   ctx.fillText(ctx.getLines(text, 720).join('\n'), 0, 100);
 
-  const bufferedPhiloImage = await getPhilo()
+  const bufferedPhiloImage = getPhilo()
   const philoImage = await CanvasImport.loadImage(bufferedPhiloImage);
   ctx.drawImage(philoImage, 0, 300, 412, 520);
 

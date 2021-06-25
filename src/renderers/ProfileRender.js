@@ -14,18 +14,18 @@ const shadeColor = (color, percent) => {
 
 const ProfileBadges = {}
 
-const start = async () => {
-  ProfileBadges[1] = await getBadgeOne()
-  ProfileBadges[6] = await getBanido()
-  ProfileBadges[7] = await getMenheraDev()
-  ProfileBadges[8] = await getBirthday()
-  ProfileBadges['HOUSE_BRAVERY'] = await getBravery()
-  ProfileBadges['HOUSE_BRILLIANCE'] = await getBrilliance()
-  ProfileBadges['HOUSE_BALANCE'] = await getBalance()
-  ProfileBadges['EARLY_VERIFIED_DEVELOPER'] = await getDeveloper()
-  ProfileBadges['ring'] = await getRing()
-  ProfileBadges['vote'] = await getVote()
-  ProfileBadges['hundred'] = await getHundred()
+const start = () => {
+  ProfileBadges[1] = getBadgeOne()
+  ProfileBadges[6] = getBanido()
+  ProfileBadges[7] = getMenheraDev()
+  ProfileBadges[8] = getBirthday()
+  ProfileBadges['HOUSE_BRAVERY'] = getBravery()
+  ProfileBadges['HOUSE_BRILLIANCE'] = getBrilliance()
+  ProfileBadges['HOUSE_BALANCE'] = getBalance()
+  ProfileBadges['EARLY_VERIFIED_DEVELOPER'] = getDeveloper()
+  ProfileBadges['ring'] = getRing()
+  ProfileBadges['vote'] = getVote()
+  ProfileBadges['hundred'] = getHundred()
 }
 
 
@@ -145,7 +145,7 @@ const buildProfileImage = async (user, marry, usageCommands, i18n) => {
   // Casado
   if (marry !== 'false') {
     ctx.fillStyle = 'white';
-    const ringEmoji = await CanvasImport.loadImage(await getRing());
+    const ringEmoji = await CanvasImport.loadImage(getRing());
     ctx.font = 'bold 40px Sans';
     ctx.lineWidth = 1;
     ctx.textAlign = 'left';

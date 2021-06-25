@@ -5,7 +5,7 @@ const buildAstolfoImage = async (txt) => {
   const canvas = CanvasImport.createCanvas(253, 330);
   const ctx = canvas.getContext('2d');
 
-  const astolfoRealImage = await getAstolfo();
+  const astolfoRealImage = getAstolfo();
   const astolfoImage = await CanvasImport.loadImage(astolfoRealImage);
 
   ctx.drawImage(astolfoImage, 0, 0, canvas.width, canvas.height);

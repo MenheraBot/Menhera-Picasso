@@ -30,6 +30,7 @@ const getVote = () => returnBuferedImage('vote');
 const getXp = () => returnBuferedImage('xp');
 const yellowFilter = () => returnBuferedImage('filter');
 const getGado = () => returnBuferedImage('gado');
+const getMacetava = () => returnBuferedImage('macetava');
 
 module.exports = {
   getAp,
@@ -58,4 +59,5 @@ module.exports = {
   getVote,
   getStatus,
   getXp,
+  getMacetava,
 }
