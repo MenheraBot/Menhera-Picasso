@@ -31,8 +31,8 @@ const buildBlackjackImage = async (userCards, menheraCards, userTotal, menheraTo
   ctx.strokeText(`${i18n.dealerHand}\n        ${menheraTotal}`, 20, 25)
 
   ctx.fillStyle = 'yellow'
-  ctx.fillText(`JackPot\n⭐${aposta * 2}⭐`, 220, 190)
-  ctx.strokeText(`JackPot\n⭐${aposta * 2}⭐`, 220, 190)
+  ctx.fillText(`JackPot\n${aposta * 2}`, 220, 190)
+  ctx.strokeText(`JackPot\n${aposta * 2}`, 220, 190)
 
   let number = 0;
   userCards.forEach(card => {
