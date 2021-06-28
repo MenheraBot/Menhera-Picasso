@@ -20,7 +20,7 @@ module.exports = class ProyoTypes {
 
       return canvas;
     };
-    CanvasRenderingContext2D.prototype.getLines = function getLines(text, maxWidth) {
+    CanvasRenderingContext2D.prototype.getLines = function (text, maxWidth) {
       const words = text.split(' ');
       const lines = [];
       let currentLine = words[0];

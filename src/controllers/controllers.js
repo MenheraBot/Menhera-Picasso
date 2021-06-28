@@ -6,6 +6,7 @@ const { buildShipImage } = require("../renderers/ShipRender")
 const { buildStatusImage } = require("../renderers/StatusRender")
 const { buildTrisalImage } = require("../renderers/TrisalRender")
 const { buildMacetavaImage } = require('../renderers/MacetavaRender')
+const { buildBlackjackImage } = require('../renderers/BlackjackRender')
 
 
 const renderAstolfo = async (req, res) => {
@@ -54,6 +55,12 @@ const renderMacetava = async (req, res) => {
   res.send(result.toJSON())
 }
 
+const renderBlackjack = async (req, res) => {
+  const { userCards, menheraCards, userTotal, menheraTotal, i18n, aposta } = req.body
+  const result = await buildBlackjackImage(userCards, menheraCards, userTotal, menheraTotal, i18n, aposta);
+  res.send(result.toJSON())
+}
+
 
 module.exports = {
   renderAstolfo,
@@ -63,5 +70,6 @@ module.exports = {
   renderStatus,
   renderProfile,
   renderGado,
-  renderMacetava
+  renderMacetava,
+  renderBlackjack
 }

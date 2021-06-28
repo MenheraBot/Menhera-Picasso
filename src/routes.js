@@ -11,6 +11,7 @@ router.get('/status', controller.renderStatus)
 router.get('/profile', controller.renderProfile)
 router.get('/gado', controller.renderGado)
 router.get('/macetava', controller.renderMacetava)
+router.get('/blackjack', controller.renderBlackjack)
 
 
 module.exports = router;

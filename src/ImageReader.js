@@ -1,9 +1,14 @@
 const fs = require('fs')
 
 const returnBuferedImage = (image) => {
-  return fs.readFileSync(`src/images/${image}.png`)
+  return fs.readFileSync(`src/assets/images/${image}.png`)
 }
 
+const returnCardsBufferedImage = (image) => {
+  return fs.readFileSync(`src/assets/cards/${image}.png`)
+}
+
+// Default
 const getAp = () => returnBuferedImage('ap');
 const getArmor = () => returnBuferedImage('armor');
 const getAstolfo = () => returnBuferedImage('astolfo');
@@ -31,6 +36,13 @@ const getXp = () => returnBuferedImage('xp');
 const yellowFilter = () => returnBuferedImage('filter');
 const getGado = () => returnBuferedImage('gado');
 const getMacetava = () => returnBuferedImage('macetava');
+
+//  Cards
+
+const getTable = () => returnCardsBufferedImage('table');
+const getHidden = () => returnCardsBufferedImage('hidden');
+const getCardByID = (cardID) => returnCardsBufferedImage(cardID)
+
 
 module.exports = {
   getAp,
@@ -60,4 +72,7 @@ module.exports = {
   getStatus,
   getXp,
   getMacetava,
+  getTable,
+  getCardByID,
+  getHidden,
 }
