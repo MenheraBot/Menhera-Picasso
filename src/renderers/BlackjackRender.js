@@ -6,11 +6,11 @@ const LoadedIcons = {}
 const start = async () => {
   const table = getTable()
   const hidden = getHidden()
-  LoadedIcons.table = await CanvasImport.loadImage(table);
-  LoadedIcons.hidden = await CanvasImport.loadImage(hidden);
+  LoadedIcons.table = await CanvasImport.loadImage(table).catch(er => console.log(er));
+  LoadedIcons.hidden = await CanvasImport.loadImage(hidden).catch(er => console.log(er));
 
   for (let i = 52; i > 0; i--) {
-    const loaded = await CanvasImport.loadImage(getCardByID(i));
+    const loaded = await CanvasImport.loadImage(getCardByID(i)).catch(er => console.log(er));
     LoadedIcons[i] = loaded;
   }
 }
@@ -19,7 +19,7 @@ const buildBlackjackImage = async (userCards, menheraCards, userTotal, menheraTo
   const canvas = CanvasImport.createCanvas(630, 370);
   const ctx = canvas.getContext('2d');
 
-  const talbeImage = await CanvasImport.loadImage(getTable());
+  const talbeImage = await CanvasImport.loadImage(getTable()).catch(er => console.log(er));
 
   ctx.drawImage(talbeImage, 0, 0, canvas.width, canvas.height);
   ctx.fillStyle = 'white';

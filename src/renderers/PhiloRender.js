@@ -10,7 +10,7 @@ const buildPhiloImage = async (text) => {
   ctx.fillText(ctx.getLines(text, 720).join('\n'), 0, 100);
 
   const bufferedPhiloImage = getPhilo()
-  const philoImage = await CanvasImport.loadImage(bufferedPhiloImage);
+  const philoImage = await CanvasImport.loadImage(bufferedPhiloImage).catch(er => console.log(er));
   ctx.drawImage(philoImage, 0, 300, 412, 520);
 
   return canvas.toBuffer();

@@ -35,24 +35,24 @@ const getUserBadgesLink = async (user) => {
   const images = [];
 
   if (user?.casado !== 'false') {
-    const ringEmoji = await CanvasImport.loadImage(ProfileBadges['ring']);
+    const ringEmoji = await CanvasImport.loadImage(ProfileBadges['ring']).catch(er => console.log(er));
     images.push(ringEmoji);
   }
 
   if (user.voteCooldown && parseInt(user?.voteCooldown) > Date.now()) {
-    const voteEmoji = await CanvasImport.loadImage(ProfileBadges['vote']);
+    const voteEmoji = await CanvasImport.loadImage(ProfileBadges['vote']).catch(er => console.log(er));
     images.push(voteEmoji);
   }
 
   if (user.votos > 100) {
-    const hundredVoteEmoji = await CanvasImport.loadImage(ProfileBadges['hundred']);
+    const hundredVoteEmoji = await CanvasImport.loadImage(ProfileBadges['hundred']).catch(er => console.log(er));
     images.push(hundredVoteEmoji);
   }
 
   if (user.flagsArray?.length > 0) {
     user.flagsArray.map(async a => {
       const buffer = ProfileBadges[a]
-      const img = await CanvasImport.loadImage(buffer)
+      const img = await CanvasImport.loadImage(buffer).catch(er => console.log(er))
       images.push(img)
     })
   }
@@ -61,7 +61,7 @@ const getUserBadgesLink = async (user) => {
     for (const i in user.badges) {
       const { id } = user.badges[i];
       const buffer = ProfileBadges[id];
-      const img = await CanvasImport.loadImage(buffer);
+      const img = await CanvasImport.loadImage(buffer).catch(er => console.log(er));
       images.push(img);
     }
   }
@@ -95,7 +95,7 @@ const buildProfileImage = async (user, marry, usageCommands, i18n) => {
   ctx.roundRect(890, 250, 180, 200, 20, true, true);
 
   // Avatar do usuário
-  const userAvatar = await CanvasImport.loadImage(user.avatar);
+  const userAvatar = await CanvasImport.loadImage(user.avatar).catch(er => console.log(er));
   const roundedImage = await ctx.roundImageCanvas(userAvatar, 250, 250);
   ctx.beginPath();
   ctx.arc(120, 120, 122, 0, 2 * Math.PI);
@@ -146,7 +146,7 @@ const buildProfileImage = async (user, marry, usageCommands, i18n) => {
 
   // Casado
   if (marry !== 'false') {
-    const ringEmoji = await CanvasImport.loadImage(getRing());
+    const ringEmoji = await CanvasImport.loadImage(getRing()).catch(er => console.log(er));
     ctx.lineWidth = 1;
     ctx.textAlign = 'left';
     ctx.fillText(`${marry.tag} | ${user.data}`, 80, 535);
@@ -166,7 +166,7 @@ const buildProfileImage = async (user, marry, usageCommands, i18n) => {
   ctx.fillText(user.mamou, 980, 425);
   ctx.strokeText(user.mamou, 980, 425);
 
-  const badgesImages = await getUserBadgesLink(user);
+  const badgesImages = await getUserBadgesLink(user).catch(er => console.log(er));
 
   if (badgesImages) {
     let number = 0;

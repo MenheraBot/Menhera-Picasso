@@ -30,9 +30,9 @@ const buildShipImage = async (linkOne, linkTwo, shipValue) => {
   const canvas = CanvasImport.createCanvas(512, 350);
   const ctx = canvas.getContext('2d');
 
-  const avatarOneLoaded = await CanvasImport.loadImage(linkOne);
-  const avatarTwoLoaded = await CanvasImport.loadImage(linkTwo);
-  const shipLoadedImage = await CanvasImport.loadImage(RainbowColorPercentage(shipValue));
+  const avatarOneLoaded = await CanvasImport.loadImage(linkOne).catch(er => console.log(er));
+  const avatarTwoLoaded = await CanvasImport.loadImage(linkTwo).catch(er => console.log(er));
+  const shipLoadedImage = await CanvasImport.loadImage(RainbowColorPercentage(shipValue)).catch(er => console.log(er));
 
   ctx.fillStyle = '#fff';
 

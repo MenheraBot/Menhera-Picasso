@@ -7,9 +7,9 @@ const buildMacetavaImage = async (image, authorName, authorDiscriminator, author
 
 
   const bufferedMacetavaImage = getMacetava()
-  const userImageLoaded = await CanvasImport.loadImage(image);
-  const macetavaImage = await CanvasImport.loadImage(bufferedMacetavaImage);
-  const userAvatar = await CanvasImport.loadImage(authorImage);
+  const userImageLoaded = await CanvasImport.loadImage(image).catch(er => console.log(er));
+  const macetavaImage = await CanvasImport.loadImage(bufferedMacetavaImage).catch(er => console.log(er));
+  const userAvatar = await CanvasImport.loadImage(authorImage).catch(er => console.log(er));
 
   ctx.drawImage(userAvatar, 30, 18, 145, 145);
 
