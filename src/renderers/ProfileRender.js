@@ -133,20 +133,20 @@ const buildProfileImage = async (user, marry, usageCommands, i18n) => {
   ctx.fillRect(0, 480, canvas.width, canvas.height);
 
   // Área de Informações
+  ctx.font = 'bold 40px Sans';
+  ctx.fillStyle = 'white';
+
+
   if (usageCommands) {
     const usedCommands = usageCommands.cmds.count;
     const mostUsedCommand = usageCommands.array[0];
-    ctx.font = 'bold 40px Sans';
-    ctx.fillStyle = 'white';
     ctx.fillText(ctx.getLines(`${user.username} ${i18n.zero} ${usedCommands} ${i18n.um} ${captalize(mostUsedCommand.name)}, ${i18n.dois} ${mostUsedCommand.count} ${i18n.tres}`, 1000).join('\n'), 20, 600);
     ctx.strokeText(ctx.getLines(`${user.username} ${i18n.zero} ${usedCommands} ${i18n.um} ${captalize(mostUsedCommand.name)}, ${i18n.dois} ${mostUsedCommand.count} ${i18n.tres}`, 1000).join('\n'), 20, 600);
   }
 
   // Casado
   if (marry !== 'false') {
-    ctx.fillStyle = 'white';
     const ringEmoji = await CanvasImport.loadImage(getRing());
-    ctx.font = 'bold 40px Sans';
     ctx.lineWidth = 1;
     ctx.textAlign = 'left';
     ctx.fillText(`${marry.tag} | ${user.data}`, 80, 535);
