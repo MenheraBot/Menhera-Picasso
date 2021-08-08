@@ -140,8 +140,8 @@ const buildProfileImage = async (user, marry, usageCommands, i18n) => {
   if (usageCommands) {
     const usedCommands = usageCommands.cmds.count;
     const mostUsedCommand = usageCommands.array[0];
-    ctx.fillText(ctx.getLines(`${user.username} ${i18n.zero} ${usedCommands} ${i18n.um} ${captalize(mostUsedCommand.name)}, ${i18n.dois} ${mostUsedCommand.count} ${i18n.tres}`, 1000).join('\n'), 20, 600);
-    ctx.strokeText(ctx.getLines(`${user.username} ${i18n.zero} ${usedCommands} ${i18n.um} ${captalize(mostUsedCommand.name)}, ${i18n.dois} ${mostUsedCommand.count} ${i18n.tres}`, 1000).join('\n'), 20, 600);
+    ctx.fillText(ctx.getLines(`${user.username} ${i18n.zero} ${usedCommands} ${i18n.um} ${captalize(mostUsedCommand?.name ?? 'owo')}, ${i18n.dois} ${mostUsedCommand?.count ?? 'nha'} ${i18n.tres}`, 1000).join('\n'), 20, 600);
+    ctx.strokeText(ctx.getLines(`${user.username} ${i18n.zero} ${usedCommands} ${i18n.um} ${captalize(mostUsedCommand?.name ?? 'owo')}, ${i18n.dois} ${mostUsedCommand?.count ?? 'nha'} ${i18n.tres}`, 1000).join('\n'), 20, 600);
   }
 
   // Casado
