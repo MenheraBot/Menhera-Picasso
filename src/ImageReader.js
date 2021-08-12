@@ -22,6 +22,7 @@ const getClass = () => returnBuferedImage('class');
 const getDamage = () => returnBuferedImage('damage');
 const getDeveloper = () => returnBuferedImage('developer');
 const getGem = () => returnBuferedImage('gem');
+const getBoleham = () => returnBuferedImage('boleham')
 const getHeart = () => returnBuferedImage('heart');
 const getHundred = () => returnBuferedImage('hundred');
 const getJob = () => returnBuferedImage('job');
@@ -60,6 +61,7 @@ module.exports = {
   getAstolfo,
   getClass,
   getGado,
+  getBoleham,
   getDamage,
   getGem,
   getHeart,
