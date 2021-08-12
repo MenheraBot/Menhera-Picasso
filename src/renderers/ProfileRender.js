@@ -1,4 +1,4 @@
-const { getRing, getBirthday, getVote, getHundred, getMenheraDev, getBanido, getDeveloper, getBravery, getBrilliance, getBadgeOne, getBalance } = require("../ImageReader");
+const { getRing, getBirthday, getVote, getRpg, getHundred, getMenheraDev, getBanido, getDeveloper, getBravery, getBrilliance, getBadgeOne, getBalance } = require("../ImageReader");
 const CanvasImport = require('canvas')
 
 const shadeColor = (color, percent) => {
@@ -19,6 +19,7 @@ const start = () => {
   ProfileBadges[6] = getBanido()
   ProfileBadges[7] = getMenheraDev()
   ProfileBadges[8] = getBirthday()
+  ProfileBadges[9] = getRpg()
   ProfileBadges['HOUSE_BRAVERY'] = getBravery()
   ProfileBadges['HOUSE_BRILLIANCE'] = getBrilliance()
   ProfileBadges['HOUSE_BALANCE'] = getBalance()
@@ -28,11 +29,18 @@ const start = () => {
   ProfileBadges['hundred'] = getHundred()
 }
 
-
 const captalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 
 const getUserBadgesLink = async (user) => {
   const images = [];
+
+  if (user.flagsArray?.length > 0) {
+    user.flagsArray.map(async a => {
+      const buffer = ProfileBadges[a]
+      const img = await CanvasImport.loadImage(buffer).catch(er => console.log(er))
+      images.push(img)
+    })
+  }
 
   if (user?.casado !== 'false') {
     const ringEmoji = await CanvasImport.loadImage(ProfileBadges['ring']).catch(er => console.log(er));
@@ -47,14 +55,6 @@ const getUserBadgesLink = async (user) => {
   if (user.votos > 100) {
     const hundredVoteEmoji = await CanvasImport.loadImage(ProfileBadges['hundred']).catch(er => console.log(er));
     images.push(hundredVoteEmoji);
-  }
-
-  if (user.flagsArray?.length > 0) {
-    user.flagsArray.map(async a => {
-      const buffer = ProfileBadges[a]
-      const img = await CanvasImport.loadImage(buffer).catch(er => console.log(er))
-      images.push(img)
-    })
   }
 
   if (user.badges?.length > 0) {

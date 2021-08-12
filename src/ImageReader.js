@@ -27,6 +27,7 @@ const getHundred = () => returnBuferedImage('hundred');
 const getJob = () => returnBuferedImage('job');
 const getLevel = () => returnBuferedImage('level');
 const getMana = () => returnBuferedImage('mana');
+const getRpg = () => returnBuferedImage('rpg');
 const getMenheraDev = () => returnBuferedImage('menheradev');
 const getPhilo = () => returnBuferedImage('philo');
 const getRing = () => returnBuferedImage('ring');
@@ -55,6 +56,7 @@ module.exports = {
   getBrilliance,
   getDeveloper,
   getArmor,
+  getRpg,
   getAstolfo,
   getClass,
   getGado,
