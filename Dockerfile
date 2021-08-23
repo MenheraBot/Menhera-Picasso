@@ -2,7 +2,7 @@ FROM node:14.15-alpine AS MenheraPicasso
 
 WORKDIR /usr/home/picasso
 
-EXPOSE 2080:2080
+EXPOSE 2080
 
  RUN apk add --no-cache \
         sudo \
