@@ -23,7 +23,9 @@ RUN apk --no-cache add ca-certificates wget  && \
         wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.29-r0/glibc-2.29-r0.apk && \
         apk add glibc-2.29-r0.apk
 
-RUN apk --update add fontconfig fonts-open-sans
+RUN apk add --no-cache msttcorefonts-installer fontconfig
+RUN update-ms-fonts
+RUN fc-cache -f && rm -rf /var/cache/*
 
 COPY . .
 
