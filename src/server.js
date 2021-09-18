@@ -4,11 +4,14 @@ const express = require("express")
 const cors = require('cors')
 const app = express()
 const routes = require('./routes')
+const { isAuthorized } = require('./utils/isAuthorized')
 
 const initServer = async () => {
   await startAllNeeded().then(() => console.log('[START] All dependencies started'))
   app.use(cors())
   app.use(express.json())
+
+  app.use(isAuthorized)
 
   app.use(routes)
 
