@@ -12,7 +12,5 @@ router.get('/profile', controller.renderProfile)
 router.get('/gado', controller.renderGado)
 router.get('/macetava', controller.renderMacetava)
 router.get('/blackjack', controller.renderBlackjack)
-router.all('/ping', (_, res) => res.sendStatus(200))
-
 
 module.exports = router;

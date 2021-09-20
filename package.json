@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/server.js",
   "scripts": {
-    "start": "node .",
+    "start": "node -r dotenv/config  .",
     "dev": "nodemon ."
   },
   "repository": {
@@ -21,6 +21,7 @@
   "dependencies": {
     "canvas": "^2.8.0",
     "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "millify": "^4.0.0"
   },
