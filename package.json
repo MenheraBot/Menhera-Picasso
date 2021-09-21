@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node -r dotenv/config  .",
     "dev": "nodemon .",
-    "docker": "docker build -t picasso:$npm_package_version . && docker run -d --restart unless-stopped -p 2080:2080 picasso"
+    "docker": "docker build -t picasso:$npm_package_version . && docker run -d --restart unless-stopped -p 2080:2080 picasso:$npm_package_version"
   },
   "repository": {
     "type": "git",
