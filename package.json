@@ -1,11 +1,12 @@
 {
   "name": "menhera-picasso",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "",
   "main": "src/server.js",
   "scripts": {
     "start": "node -r dotenv/config  .",
-    "dev": "nodemon ."
+    "dev": "nodemon .",
+    "docker": "docker build -t picasso:$npm_package_version . && docker run -d --restart unless-stopped -p 2080:2080 picasso"
   },
   "repository": {
     "type": "git",

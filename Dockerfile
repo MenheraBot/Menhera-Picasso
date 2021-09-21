@@ -1,4 +1,4 @@
-FROM node:14.15-alpine AS MenheraPicasso
+FROM node:14.15-alpine
 
 WORKDIR /usr/home/picasso
 
