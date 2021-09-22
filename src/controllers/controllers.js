@@ -3,7 +3,6 @@ const { buildGadoImage } = require("../renderers/GadoRender")
 const { buildPhiloImage } = require("../renderers/PhiloRender")
 const { buildProfileImage } = require("../renderers/ProfileRender")
 const { buildShipImage } = require("../renderers/ShipRender")
-const { buildStatusImage } = require("../renderers/StatusRender")
 const { buildTrisalImage } = require("../renderers/TrisalRender")
 const { buildMacetavaImage } = require('../renderers/MacetavaRender')
 const { buildBlackjackImage } = require('../renderers/BlackjackRender')
@@ -28,12 +27,6 @@ const renderTrisal = async (req, res) => {
 const renderShip = async (req, res) => {
   const { linkOne, linkTwo, shipValue } = req.body
   const result = await buildShipImage(linkOne, linkTwo, shipValue)
-  res.send(result.toJSON())
-}
-
-const renderStatus = async (req, res) => {
-  const { user, userAvatarLink, i18n } = req.body
-  const result = await buildStatusImage(user, userAvatarLink, i18n)
   res.send(result.toJSON())
 }
 
@@ -67,7 +60,6 @@ module.exports = {
   renderPhilo,
   renderTrisal,
   renderShip,
-  renderStatus,
   renderProfile,
   renderGado,
   renderMacetava,
