@@ -12,9 +12,9 @@ const initServer = async () => {
   app.use(cors())
   app.use(express.json())
 
-  app.use(routes, isAuthorized)
-
   app.get('/ping', (_, res) => res.status(200).json({ message: 'Heyyy, im up', uptime: Date.now() - startTime }))
+
+  app.use(routes, isAuthorized)
 
   app.use((_req, res) => {
     res.status(404).json({ message: 'Welp, there is nothing for you right here' });
