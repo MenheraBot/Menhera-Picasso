@@ -4,7 +4,9 @@ const express = require("express")
 const cors = require('cors')
 const app = express()
 const routes = require('./routes')
+const { WebSockerServer } = require('ws')
 const { isAuthorized } = require('./utils/isAuthorized')
+const WebSocketController = require('./controllers/WebSocketController')
 
 const initServer = async () => {
   const startTime = Date.now()
@@ -20,9 +22,12 @@ const initServer = async () => {
     res.status(404).json({ message: 'Welp, there is nothing for you right here' });
   })
 
-  app.listen(2080, () => {
+  const server = app.listen(2080, () => {
     console.log('[SERVER] Menhera Picasso started at port 2080')
   });
+
+  const ws = new WebSockerServer({ server });
+  ws.on('connection', WebSocketController)
 }
 
 initServer();
