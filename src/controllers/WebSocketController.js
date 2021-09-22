@@ -9,9 +9,7 @@ const { buildBlackjackImage } = require('../renderers/BlackjackRender')
 
 const WebSocketController = (socket) => {
   socket.on('message', async (rawRequest) => {
-    console.log(socket)
-    console.log(rawRequest)
-    const { type, data } = JSON.parse(rawRequest);
+    const { type, data } = JSON.parse(rawRequest.toString());
 
     switch (type) {
       case 'astolfo': {
