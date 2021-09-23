@@ -8,53 +8,53 @@ const { buildMacetavaImage } = require('../renderers/MacetavaRender')
 const { buildBlackjackImage } = require('../renderers/BlackjackRender')
 
 const WebSocketController = async (socket, rawRequest) => {
-  const { type, data } = JSON.parse(rawRequest.toString());
+  const { type, data, id } = JSON.parse(rawRequest.toString());
 
   switch (type) {
     case 'astolfo': {
       const result = await buildAstolfoImage(data.text)
-      socket.send(JSON.stringify(result.toJSON()))
+      socket.send(JSON.stringify({ id, res: result.toJSON() }))
       break;
     }
     case 'philo': {
       const result = await buildPhiloImage(data.text)
-      socket.send(JSON.stringify(result.toJSON()))
+      socket.send(JSON.stringify({ id, res: result.toJSON() }))
       break;
     }
     case 'trisal': {
       const { userOne, userTwo, userThree } = data
       const result = await buildTrisalImage(userOne, userTwo, userThree)
-      socket.send(JSON.stringify(result.toJSON()))
+      socket.send(JSON.stringify({ id, res: result.toJSON() }))
       break;
     }
     case 'ship': {
       const { linkOne, linkTwo, shipValue } = data
       const result = await buildShipImage(linkOne, linkTwo, shipValue)
-      socket.send(JSON.stringify(result.toJSON()))
+      socket.send(JSON.stringify({ id, res: result.toJSON() }))
       break;
     }
     case 'profile': {
       const { user, marry, usageCommands, i18n } = data
       const result = await buildProfileImage(user, marry, usageCommands, i18n)
-      socket.send(JSON.stringify(result.toJSON()))
+      socket.send(JSON.stringify({ id, res: result.toJSON() }))
       break;
     }
     case 'gado': {
       const { image } = data
       const result = await buildGadoImage(image);
-      socket.send(JSON.stringify(result.toJSON()))
+      socket.send(JSON.stringify({ id, res: result.toJSON() }))
       break;
     }
     case 'macetava': {
       const { image, authorName, authorDiscriminator, authorImage } = data
       const result = await buildMacetavaImage(image, authorName, authorDiscriminator, authorImage);
-      socket.send(JSON.stringify(result.toJSON()))
+      socket.send(JSON.stringify({ id, res: result.toJSON() }))
       break;
     }
     case 'blackjack': {
       const { userCards, menheraCards, userTotal, menheraTotal, i18n, aposta } = data
       const result = await buildBlackjackImage(userCards, menheraCards, userTotal, menheraTotal, i18n, aposta);
-      socket.send(JSON.stringify(result.toJSON()))
+      socket.send(JSON.stringify({ id, res: result.toJSON() }))
       break;
     }
   }
