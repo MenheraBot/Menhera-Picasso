@@ -56,8 +56,8 @@ const renderBlackjack = async (req, res) => {
 }
 
 const renderEightball = async (req, res) => {
-  const { question, type } = req.body
-  const result = await build8BallImage(question, type);
+  const { question, type, username, answer } = req.body
+  const result = await build8BallImage(question, answer, type, username);
   res.send(result.toJSON())
 }
 
