@@ -5,7 +5,6 @@ const buildMacetavaImage = async (image, authorName, authorDiscriminator, author
   const canvas = CanvasImport.createCanvas(1080, 882);
   const ctx = canvas.getContext('2d');
 
-
   const bufferedMacetavaImage = getMacetava()
   const userImageLoaded = await CanvasImport.loadImage(image).catch(er => console.log(er));
   const macetavaImage = await CanvasImport.loadImage(bufferedMacetavaImage).catch(er => console.log(er));
@@ -14,7 +13,7 @@ const buildMacetavaImage = async (image, authorName, authorDiscriminator, author
   ctx.drawImage(userAvatar, 30, 18, 145, 145);
 
   ctx.drawImage(userImageLoaded, 33, 305, 502, 573)
-  
+
   ctx.save();
   ctx.fillStyle = '#FFF';
   ctx.fillRect(542, 305, 505, 573);
