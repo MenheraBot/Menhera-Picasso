@@ -6,6 +6,7 @@ const { buildShipImage } = require("../renderers/ShipRender")
 const { buildTrisalImage } = require("../renderers/TrisalRender")
 const { buildMacetavaImage } = require('../renderers/MacetavaRender')
 const { buildBlackjackImage } = require('../renderers/BlackjackRender')
+const { build8BallImage } = require("../renderers/EightballRender")
 
 const WebSocketController = async (socket, rawRequest) => {
   const { type, data, id } = JSON.parse(rawRequest.toString());
@@ -56,6 +57,11 @@ const WebSocketController = async (socket, rawRequest) => {
       const result = await buildBlackjackImage(userCards, menheraCards, userTotal, menheraTotal, i18n, aposta);
       socket.send(JSON.stringify({ id, res: result.toJSON() }))
       break;
+    }
+    case '8ball': {
+      const { question, type } = data
+      const result = await build8BallImage(question, type);
+      socket.send(JSON.stringify({ id, res: result.toJSON() }))
     }
   }
 };

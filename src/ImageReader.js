@@ -13,6 +13,7 @@ const returnCardsBufferedImage = (image) => {
 const getAstolfo = () => returnBuferedImage('astolfo');
 const getBadgeOne = () => returnBuferedImage('badge1');
 const getBalance = () => returnBuferedImage('balance');
+const getBedroom = () => returnBuferedImage('bedroom');
 const getBanido = () => returnBuferedImage('banido');
 const getBirthday = () => returnBuferedImage('birthday');
 const getBravery = () => returnBuferedImage('bravery');
@@ -55,5 +56,6 @@ module.exports = {
   getMacetava,
   getTable,
   getCardByID,
+  getBedroom,
   getHidden,
 }
