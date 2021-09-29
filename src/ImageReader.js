@@ -28,6 +28,11 @@ const getRing = () => returnBuferedImage('ring');
 const getVote = () => returnBuferedImage('vote');
 const getGado = () => returnBuferedImage('gado');
 const getMacetava = () => returnBuferedImage('macetava');
+const getNeutral = (number) => returnBuferedImage(`neutral_${number}`)
+const getPositive = (number) => returnBuferedImage(`positive_${number}`)
+const getNegative = (number) => returnBuferedImage(`negative_${number}`)
+const getTextBox = () => returnBuferedImage('text_box')
+
 
 //  Cards
 
@@ -56,6 +61,10 @@ module.exports = {
   getMacetava,
   getTable,
   getCardByID,
+  getPositive,
+  getNegative,
+  getNeutral,
   getBedroom,
+  getTextBox,
   getHidden,
 }
