@@ -44,7 +44,7 @@ const buildBlackjackImage = async (userCards, menheraCards, userTotal, menheraTo
 
   menheraCards.forEach(card => {
     number++;
-    ctx.drawImage((card.hidden ? LoadedIcons['hidden'] : LoadedIcons[card.id]), 100 + (80 * number), 40, 72, 84)
+    ctx.drawImage((card?.hidden ? LoadedIcons['hidden'] : LoadedIcons[card.id]), 100 + (80 * number), 40, 72, 84)
   })
 
   return canvas.toBuffer();
