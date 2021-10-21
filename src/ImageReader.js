@@ -20,6 +20,7 @@ const getBravery = () => returnBuferedImage('bravery');
 const getBrilliance = () => returnBuferedImage('brilliance');
 const getDeveloper = () => returnBuferedImage('developer');
 const getBoleham = () => returnBuferedImage('boleham')
+const getHalloween = () => returnBuferedImage('halloween')
 const getHundred = () => returnBuferedImage('hundred');
 const getRpg = () => returnBuferedImage('rpg');
 const getMenheraDev = () => returnBuferedImage('menheradev');
@@ -64,5 +65,6 @@ module.exports = {
   getBedroom,
   getTextBox,
   getReponseBox,
+  getHalloween,
   getHidden,
 }

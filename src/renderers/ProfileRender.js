@@ -1,4 +1,4 @@
-const { getRing, getBirthday, getBoleham, getVote, getRpg, getHundred, getMenheraDev, getBanido, getDeveloper, getBravery, getBrilliance, getBadgeOne, getBalance } = require("../ImageReader");
+const { getRing, getBirthday, getBoleham, getVote, getRpg, getHundred, getMenheraDev, getBanido, getDeveloper, getBravery, getBrilliance, getBadgeOne, getBalance, getHalloween } = require("../ImageReader");
 const CanvasImport = require('canvas')
 
 const shadeColor = (color, percent) => {
@@ -21,6 +21,7 @@ const start = () => {
   ProfileBadges[8] = getBirthday()
   ProfileBadges[10] = getRpg()
   ProfileBadges[11] = getBoleham()
+  ProfileBadges[12] = getHalloween()
   ProfileBadges['HOUSE_BRAVERY'] = getBravery()
   ProfileBadges['HOUSE_BRILLIANCE'] = getBrilliance()
   ProfileBadges['HOUSE_BALANCE'] = getBalance()
