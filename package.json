@@ -1,6 +1,6 @@
 {
   "name": "menhera-picasso",
-  "version": "3.4.1",
+  "version": "3.4.2",
   "description": "Menhera Picasso is an application to handle image rendering for MenheraBot",
   "main": "src/server.js",
   "scripts": {

@@ -44,7 +44,7 @@ const getUserBadgesLink = async (user) => {
     })
   }
 
-  if (user?.casado !== 'false') {
+  if (user?.casado !== null) {
     const ringEmoji = await CanvasImport.loadImage(ProfileBadges['ring']).catch(er => console.log(er));
     images.push(ringEmoji);
   }
@@ -147,7 +147,7 @@ const buildProfileImage = async (user, marry, usageCommands, i18n) => {
   }
 
   // Casado
-  if (marry !== 'false') {
+  if (marry !== null) {
     const ringEmoji = await CanvasImport.loadImage(getRing()).catch(er => console.log(er));
     ctx.lineWidth = 1;
     ctx.textAlign = 'left';
