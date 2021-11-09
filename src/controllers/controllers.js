@@ -7,6 +7,7 @@ const { buildTrisalImage } = require("../renderers/TrisalRender")
 const { buildMacetavaImage } = require('../renderers/MacetavaRender')
 const { buildBlackjackImage } = require('../renderers/BlackjackRender')
 const { build8BallImage } = require("../renderers/EightballRender")
+const { buildVascoImage } = require('../renderers/VascoRender')
 
 
 const renderAstolfo = async (req, res) => {
@@ -61,12 +62,19 @@ const renderEightball = async (req, res) => {
   res.send(result.toJSON())
 }
 
+const renderVascoImage = async (req, res) => {
+  const { user, username, quality, position } = req.body
+  const result = await buildVascoImage(user, username, quality, position)
+  res.send(result.toJSON())
+}
+
 
 module.exports = {
   renderAstolfo,
   renderPhilo,
   renderTrisal,
   renderShip,
+  renderVascoImage,
   renderProfile,
   renderGado,
   renderMacetava,

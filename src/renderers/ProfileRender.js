@@ -78,7 +78,7 @@ const buildProfileImage = async (user, marry, usageCommands, i18n) => {
   const ctx = canvas.getContext('2d');
 
   // Plano de Fundo
-  const baseColor = user.cor || '#a788ff';
+  const baseColor = user.cor ?? '#a788ff';
   ctx.fillStyle = baseColor;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
