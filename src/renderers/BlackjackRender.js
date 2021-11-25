@@ -1,53 +1,51 @@
 const CanvasImport = require('canvas')
-const { getTable, getHidden, getCardByID } = require('../ImageReader')
+const { getTable, getMoneyBag } = require('../ImageReader');
+const { Cards, Colors } = require('../utils/CardsStarter');
+const Profilebadges = require('../utils/ProfileUtils')
 
-const LoadedIcons = {}
-
-const start = async () => {
-  const table = getTable()
-  const hidden = getHidden()
-  LoadedIcons.table = await CanvasImport.loadImage(table).catch(er => console.log(er));
-  LoadedIcons.hidden = await CanvasImport.loadImage(hidden).catch(er => console.log(er));
-
-  for (let i = 52; i > 0; i--) {
-    const loaded = await CanvasImport.loadImage(getCardByID(i)).catch(er => console.log(er));
-    LoadedIcons[i] = loaded;
-  }
-}
-
-const buildBlackjackImage = async (userCards, menheraCards, userTotal, menheraTotal, i18n, aposta) => {
-  const canvas = CanvasImport.createCanvas(630, 370);
+const buildBlackjackImage = async (userCards, menheraCards, userTotal, menheraTotal, i18n, aposta, cardTheme = 'default', tableTheme = 'green') => {
+  const canvas = CanvasImport.createCanvas(630, 460);
   const ctx = canvas.getContext('2d');
 
-  const talbeImage = await CanvasImport.loadImage(getTable()).catch(er => console.log(er));
+  const talbeImage = await CanvasImport.loadImage(getTable(tableTheme))
+  const moneybag = await CanvasImport.loadImage(getMoneyBag())
 
   ctx.drawImage(talbeImage, 0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = 'white';
-  ctx.font = 'bold 24px Sans';
-  ctx.fillText(`${i18n.yourHand}\n     ${userTotal}`, 20, 300)
-  ctx.strokeText(`${i18n.yourHand}\n     ${userTotal}`, 20, 300)
+  ctx.fillStyle = Colors[tableTheme];
+  ctx.font = 'bold 36px Impact';
 
-  ctx.fillText(`${i18n.dealerHand}\n        ${menheraTotal}`, 20, 25)
-  ctx.strokeText(`${i18n.dealerHand}\n        ${menheraTotal}`, 20, 25)
+  ctx.textAlign = 'center'
+  ctx.fillText(`${i18n.dealerHand}\n                ${menheraTotal}`, 280, 36)
+  ctx.strokeText(`${i18n.dealerHand}\n                ${menheraTotal}`, 280, 36)
+  ctx.fillText(`${i18n.yourHand}\n       ${userTotal}`, 280, 300)
+  ctx.strokeText(`${i18n.yourHand}\n       ${userTotal}`, 280, 300)
+
+  ctx.textAlign = 'start'
+  ctx.fillStyle = Profilebadges.ShadeColor(Colors[tableTheme], 10);
+  ctx.roundRect(167, 190, 240, 70, 20, true, true);
 
   ctx.fillStyle = 'yellow'
-  ctx.fillText(`JackPot\n${aposta * 2}`, 220, 190)
-  ctx.strokeText(`JackPot\n${aposta * 2}`, 220, 190)
+  ctx.drawImage(moneybag, 177, 193, 64, 64)
+  ctx.drawImage(moneybag, 327, 193, 64, 64)
+  ctx.fillText(`${aposta * 2}`, 250, 240)
+  ctx.strokeText(`${aposta * 2}`, 250, 240)
 
-  let number = 0;
-  userCards.forEach(card => {
-    number++;
-    ctx.drawImage(LoadedIcons[card.id], 80 + (80 * number), 260, 72, 84)
+  ctx.fillStyle = Profilebadges.ShadeColor(Colors[tableTheme], -10);
+
+  const userStartW = (295 - 40 * userCards.length)
+  const menheraStartW = (295 - 40 * menheraCards.length)
+  ctx.roundRect(menheraStartW - 5, 85, menheraCards.length * 80 + 3, 97, 5, true, true);
+  ctx.roundRect(userStartW - 5, 353, userCards.length * 80 + 3, 97, 5, true, true);
+
+  userCards.forEach((card, i) => {
+    ctx.drawImage(Cards[cardTheme][card.id], userStartW + (80 * i), 360, 72, 84)
   })
 
-  number = 0;
-
-  menheraCards.forEach(card => {
-    number++;
-    ctx.drawImage((card?.hidden ? LoadedIcons['hidden'] : LoadedIcons[card.id]), 100 + (80 * number), 40, 72, 84)
+  menheraCards.forEach((card, i) => {
+    ctx.drawImage((card?.hidden ? Cards[cardTheme]['hidden'] : Cards[cardTheme][card.id]), menheraStartW + (80 * i), 93, 72, 84)
   })
 
   return canvas.toBuffer();
 }
 
-module.exports = { buildBlackjackImage, start }
+module.exports = { buildBlackjackImage }

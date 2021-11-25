@@ -1,13 +1,15 @@
-const profile = require('../renderers/ProfileRender')
 const canvas = require('./CanvasPrototypes')
-const blackjack = require('../renderers/BlackjackRender')
+const CardsStarter = require('./CardsStarter')
 const { registerFont } = require('canvas')
 const { join } = require('path')
+const { Start: StartBadges } = require('./ProfileUtils')
+
 const startAllNeeded = async () => {
   registerFont(join(__dirname, '..', 'assets', 'fonts', 'impact.ttf'), { family: 'Impact' })
-  profile.start()
+  StartBadges()
   canvas.start()
-  await blackjack.start()
+  CardsStarter.Start()
 }
+
 
 module.exports = { startAllNeeded }

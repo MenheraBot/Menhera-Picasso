@@ -1,45 +1,43 @@
 const fs = require('fs')
 
-const returnBuferedImage = (image) => {
-  return fs.readFileSync(`src/assets/images/${image}.png`)
-}
+const returnBufferedImage = (image) => fs.readFileSync(`src/assets/images/${image}.png`)
 
-const returnCardsBufferedImage = (image) => {
-  return fs.readFileSync(`src/assets/cards/${image}.png`)
-}
+const returnCardsBufferedImage = (image, theme) => fs.readFileSync(`src/assets/cards/${theme}/${image}.png`)
+
+const returnTableBufferedImage = (image) => fs.readFileSync(`src/assets/tables/${image}.png`)
 
 // Default
 
-const getAstolfo = () => returnBuferedImage('astolfo');
-const getBadgeOne = () => returnBuferedImage('badge1');
-const getBalance = () => returnBuferedImage('balance');
-const getBedroom = () => returnBuferedImage('bedroom');
-const getBanido = () => returnBuferedImage('banido');
-const getBirthday = () => returnBuferedImage('birthday');
-const getBravery = () => returnBuferedImage('bravery');
-const getBrilliance = () => returnBuferedImage('brilliance');
-const getDeveloper = () => returnBuferedImage('developer');
-const getBoleham = () => returnBuferedImage('boleham');
-const getHalloween = () => returnBuferedImage('halloween');
-const getHundred = () => returnBuferedImage('hundred');
-const getRpg = () => returnBuferedImage('rpg');
-const getMenheraDev = () => returnBuferedImage('menheradev');
-const getPhilo = () => returnBuferedImage('philo');
-const getRing = () => returnBuferedImage('ring');
-const getVote = () => returnBuferedImage('vote');
-const getGado = () => returnBuferedImage('gado');
-const getMacetava = () => returnBuferedImage('macetava');
-const getMenhera = (number, type) => returnBuferedImage(`${type}_${number}`);
-const getTextBox = () => returnBuferedImage('text_box');
-const getReponseBox = () => returnBuferedImage('response_box');
-const getVasco = (quality) => returnBuferedImage(`vasco_${quality}`);
-
+const getAstolfo = () => returnBufferedImage('astolfo');
+const getBadgeOne = () => returnBufferedImage('badge1');
+const getBalance = () => returnBufferedImage('balance');
+const getBedroom = () => returnBufferedImage('bedroom');
+const getBanido = () => returnBufferedImage('banido');
+const getBirthday = () => returnBufferedImage('birthday');
+const getBravery = () => returnBufferedImage('bravery');
+const getBrilliance = () => returnBufferedImage('brilliance');
+const getDeveloper = () => returnBufferedImage('developer');
+const getBoleham = () => returnBufferedImage('boleham');
+const getHalloween = () => returnBufferedImage('halloween');
+const getHundred = () => returnBufferedImage('hundred');
+const getRpg = () => returnBufferedImage('rpg');
+const getMenheraDev = () => returnBufferedImage('menheradev');
+const getPhilo = () => returnBufferedImage('philo');
+const getRing = () => returnBufferedImage('ring');
+const getVote = () => returnBufferedImage('vote');
+const getGado = () => returnBufferedImage('gado');
+const getMacetava = () => returnBufferedImage('macetava');
+const getMenhera = (number, type) => returnBufferedImage(`${type}_${number}`);
+const getTextBox = () => returnBufferedImage('text_box');
+const getReponseBox = () => returnBufferedImage('response_box');
+const getVasco = (quality) => returnBufferedImage(`vasco_${quality}`);
+const getMoneyBag = () => returnBufferedImage('moneybag');
 
 //  Cards
 
-const getTable = () => returnCardsBufferedImage('table');
-const getHidden = () => returnCardsBufferedImage('hidden');
-const getCardByID = (cardID) => returnCardsBufferedImage(cardID);
+const getTable = (theme = 'green') => returnTableBufferedImage(theme);
+const getHidden = (theme = 'default') => returnCardsBufferedImage('hidden', theme);
+const getCardByID = (cardID, theme = 'default') => returnCardsBufferedImage(cardID, theme);
 
 
 module.exports = {
@@ -67,6 +65,7 @@ module.exports = {
   getBedroom,
   getTextBox,
   getReponseBox,
+  getMoneyBag,
   getHalloween,
   getHidden,
 }

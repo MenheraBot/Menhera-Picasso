@@ -1,76 +1,7 @@
-const { getRing, getBirthday, getBoleham, getVote, getRpg, getHundred, getMenheraDev, getBanido, getDeveloper, getBravery, getBrilliance, getBadgeOne, getBalance, getHalloween } = require("../ImageReader");
-const CanvasImport = require('canvas')
-
-const shadeColor = (color, percent) => {
-  const num = parseInt(color.slice(1), 16);
-  const amt = Math.round(2.55 * percent);
-  const R = (num >> 16) + amt;
-  const G = (num >> 8 & 0x00FF) + amt;
-  const B = (num & 0x0000FF) + amt;
-
-  const shadedColor = `#${(0x1000000 + (R < 255 ? R < 1 ? 0 : R : 255) * 0x10000 + (G < 255 ? G < 1 ? 0 : G : 255) * 0x100 + (B < 255 ? B < 1 ? 0 : B : 255)).toString(16).slice(1)}`;
-  return shadedColor;
-}
-
-const ProfileBadges = {}
-
-const start = () => {
-  ProfileBadges[1] = getBadgeOne()
-  ProfileBadges[6] = getBanido()
-  ProfileBadges[7] = getMenheraDev()
-  ProfileBadges[8] = getBirthday()
-  ProfileBadges[10] = getRpg()
-  ProfileBadges[11] = getBoleham()
-  ProfileBadges[12] = getHalloween()
-  ProfileBadges['HOUSE_BRAVERY'] = getBravery()
-  ProfileBadges['HOUSE_BRILLIANCE'] = getBrilliance()
-  ProfileBadges['HOUSE_BALANCE'] = getBalance()
-  ProfileBadges['EARLY_VERIFIED_BOT_DEVELOPER'] = getDeveloper()
-  ProfileBadges['ring'] = getRing()
-  ProfileBadges['vote'] = getVote()
-  ProfileBadges['hundred'] = getHundred()
-}
+const CanvasImport = require('canvas');
+const ProfileBadges = require('../../utils/ProfileUtils');
 
 const captalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
-
-const getUserBadgesLink = async (user) => {
-  const images = [];
-
-  if (user.flagsArray?.length > 0) {
-    user.flagsArray.map(async a => {
-      const buffer = ProfileBadges[a]
-      const img = await CanvasImport.loadImage(buffer).catch(er => console.log(er))
-      images.push(img)
-    })
-  }
-
-  if (user?.casado !== null) {
-    const ringEmoji = await CanvasImport.loadImage(ProfileBadges['ring']).catch(er => console.log(er));
-    images.push(ringEmoji);
-  }
-
-  if (user.voteCooldown && parseInt(user?.voteCooldown) > Date.now()) {
-    const voteEmoji = await CanvasImport.loadImage(ProfileBadges['vote']).catch(er => console.log(er));
-    images.push(voteEmoji);
-  }
-
-  if (user.votos > 100) {
-    const hundredVoteEmoji = await CanvasImport.loadImage(ProfileBadges['hundred']).catch(er => console.log(er));
-    images.push(hundredVoteEmoji);
-  }
-
-  if (user.badges?.length > 0) {
-    for (const i in user.badges) {
-      const { id } = user.badges[i];
-      const buffer = ProfileBadges[id];
-      const img = await CanvasImport.loadImage(buffer).catch(er => console.log(er));
-      images.push(img);
-    }
-  }
-
-  return images;
-}
-
 
 const buildProfileImage = async (user, marry, usageCommands, i18n) => {
   // Criação da Área de Trabalho
@@ -83,12 +14,12 @@ const buildProfileImage = async (user, marry, usageCommands, i18n) => {
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   // Header
-  const darkerColor = shadeColor(baseColor, -15);
+  const darkerColor = ProfileBadges.ShadeColor(baseColor, -15);
   ctx.fillStyle = darkerColor;
   ctx.roundRect(0, 0, canvas.width, 240, 20, true, true);
 
   // Emblemas
-  const darkestThanTheDarkerColor = shadeColor(darkerColor, -10);
+  const darkestThanTheDarkerColor = ProfileBadges.ShadeColor(darkerColor, -10);
   ctx.fillStyle = darkestThanTheDarkerColor;
   ctx.roundRect(0, 164, canvas.width, 75, 20, true, true);
 
@@ -148,7 +79,7 @@ const buildProfileImage = async (user, marry, usageCommands, i18n) => {
 
   // Casado
   if (marry !== null) {
-    const ringEmoji = await CanvasImport.loadImage(getRing()).catch(er => console.log(er));
+    const ringEmoji = await CanvasImport.loadImage(ProfileBadges.Badges['ring']).catch(er => console.log(er));
     ctx.lineWidth = 1;
     ctx.textAlign = 'left';
     ctx.fillText(`${marry.tag} | ${user.data}`, 80, 535);
@@ -168,17 +99,11 @@ const buildProfileImage = async (user, marry, usageCommands, i18n) => {
   ctx.fillText(user.mamou, 980, 425);
   ctx.strokeText(user.mamou, 980, 425);
 
-  const badgesImages = await getUserBadgesLink(user).catch(er => console.log(er));
+  const badgesImages = await ProfileBadges.GetBadges(user).catch(er => console.log(er));
 
-  if (badgesImages) {
-    let number = 0;
-    badgesImages.forEach((img) => {
-      ctx.drawImage(img, 230 + (number * 64), 170, 64, 64);
-      number++;
-    });
-  }
+  ProfileBadges.drawBadges(ctx, badgesImages, 230, 170);
 
   return canvas.toBuffer();
 }
 
-module.exports = { buildProfileImage, start }
+module.exports = { buildProfileImage }

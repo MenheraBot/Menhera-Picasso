@@ -1,13 +1,13 @@
 const { buildAstolfoImage } = require("../renderers/AstolfoRender")
 const { buildGadoImage } = require("../renderers/GadoRender")
 const { buildPhiloImage } = require("../renderers/PhiloRender")
-const { buildProfileImage } = require("../renderers/ProfileRender")
 const { buildShipImage } = require("../renderers/ShipRender")
 const { buildTrisalImage } = require("../renderers/TrisalRender")
 const { buildMacetavaImage } = require('../renderers/MacetavaRender')
 const { buildBlackjackImage } = require('../renderers/BlackjackRender')
 const { build8BallImage } = require("../renderers/EightballRender")
 const { buildVascoImage } = require('../renderers/VascoRender')
+const ProfileSelector = require("../utils/ProfileSelector")
 
 
 const renderAstolfo = async (req, res) => {
@@ -33,8 +33,8 @@ const renderShip = async (req, res) => {
 }
 
 const renderProfile = async (req, res) => {
-  const { user, marry, usageCommands, i18n } = req.body
-  const result = await buildProfileImage(user, marry, usageCommands, i18n)
+  const { user, marry, usageCommands, i18n, type } = req.body
+  const result = await ProfileSelector(user, marry, usageCommands, i18n, type)
   res.send(result.toJSON())
 }
 
@@ -51,8 +51,8 @@ const renderMacetava = async (req, res) => {
 }
 
 const renderBlackjack = async (req, res) => {
-  const { userCards, menheraCards, userTotal, menheraTotal, i18n, aposta } = req.body
-  const result = await buildBlackjackImage(userCards, menheraCards, userTotal, menheraTotal, i18n, aposta);
+  const { userCards, menheraCards, userTotal, menheraTotal, i18n, aposta, cardTheme, tableTheme } = req.body
+  const result = await buildBlackjackImage(userCards, menheraCards, userTotal, menheraTotal, i18n, aposta, cardTheme, tableTheme);
   res.send(result.toJSON())
 }
 

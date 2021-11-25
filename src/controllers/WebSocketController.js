@@ -1,13 +1,13 @@
 const { buildAstolfoImage } = require("../renderers/AstolfoRender")
 const { buildGadoImage } = require("../renderers/GadoRender")
 const { buildPhiloImage } = require("../renderers/PhiloRender")
-const { buildProfileImage } = require("../renderers/ProfileRender")
 const { buildShipImage } = require("../renderers/ShipRender")
 const { buildTrisalImage } = require("../renderers/TrisalRender")
 const { buildMacetavaImage } = require('../renderers/MacetavaRender')
 const { buildBlackjackImage } = require('../renderers/BlackjackRender')
 const { build8BallImage } = require("../renderers/EightballRender")
 const { buildVascoImage } = require('../renderers/VascoRender')
+const ProfileSelector = require("../utils/ProfileSelector")
 
 const WebSocketController = async (socket, rawRequest) => {
   const { type, data, id } = JSON.parse(rawRequest.toString());
@@ -36,8 +36,8 @@ const WebSocketController = async (socket, rawRequest) => {
       break;
     }
     case 'profile': {
-      const { user, marry, usageCommands, i18n } = data
-      const result = await buildProfileImage(user, marry, usageCommands, i18n)
+      const { user, marry, usageCommands, i18n, type } = data
+      const result = await ProfileSelector(user, marry, usageCommands, i18n, type)
       socket.send(JSON.stringify({ id, res: result.toJSON() }))
       break;
     }
@@ -54,8 +54,8 @@ const WebSocketController = async (socket, rawRequest) => {
       break;
     }
     case 'blackjack': {
-      const { userCards, menheraCards, userTotal, menheraTotal, i18n, aposta } = data
-      const result = await buildBlackjackImage(userCards, menheraCards, userTotal, menheraTotal, i18n, aposta);
+      const { userCards, menheraCards, userTotal, menheraTotal, i18n, aposta, cardTheme, tableTheme } = data
+      const result = await buildBlackjackImage(userCards, menheraCards, userTotal, menheraTotal, i18n, aposta, cardTheme, tableTheme);
       socket.send(JSON.stringify({ id, res: result.toJSON() }))
       break;
     }
