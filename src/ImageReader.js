@@ -1,10 +1,9 @@
 const fs = require('fs')
 
 const returnBufferedImage = (image) => fs.readFileSync(`src/assets/images/${image}.png`)
-
 const returnCardsBufferedImage = (image, theme) => fs.readFileSync(`src/assets/cards/${theme}/${image}.png`)
-
 const returnTableBufferedImage = (image) => fs.readFileSync(`src/assets/tables/${image}.png`)
+const returnBackgroundCardBufferedImage = (theme) => fs.readFileSync(`src/assets/backgrounds/${theme}.png`)
 
 // Default
 
@@ -36,7 +35,7 @@ const getMoneyBag = () => returnBufferedImage('moneybag');
 //  Cards
 
 const getTable = (theme = 'green') => returnTableBufferedImage(theme);
-const getHidden = (theme = 'default') => returnCardsBufferedImage('hidden', theme);
+const getBackgroundCard = (theme = 'red') => returnBackgroundCardBufferedImage(theme);
 const getCardByID = (cardID, theme = 'default') => returnCardsBufferedImage(cardID, theme);
 
 
@@ -67,5 +66,5 @@ module.exports = {
   getReponseBox,
   getMoneyBag,
   getHalloween,
-  getHidden,
+  getBackgroundCard,
 }

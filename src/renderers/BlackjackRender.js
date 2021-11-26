@@ -1,9 +1,9 @@
 const CanvasImport = require('canvas')
 const { getTable, getMoneyBag } = require('../ImageReader');
-const { Cards, Colors } = require('../utils/CardsStarter');
+const { Cards, Colors, Backgrounds } = require('../utils/CardsStarter');
 const Profilebadges = require('../utils/ProfileUtils')
 
-const buildBlackjackImage = async (userCards, menheraCards, userTotal, menheraTotal, i18n, aposta, cardTheme = 'default', tableTheme = 'green') => {
+const buildBlackjackImage = async (userCards, menheraCards, userTotal, menheraTotal, i18n, aposta, cardTheme = 'default', tableTheme = 'green', backgroundCardTheme = 'red') => {
   const canvas = CanvasImport.createCanvas(630, 460);
   const ctx = canvas.getContext('2d');
 
@@ -42,7 +42,7 @@ const buildBlackjackImage = async (userCards, menheraCards, userTotal, menheraTo
   })
 
   menheraCards.forEach((card, i) => {
-    ctx.drawImage((card?.hidden ? Cards[cardTheme]['hidden'] : Cards[cardTheme][card.id]), menheraStartW + (80 * i), 93, 72, 84)
+    ctx.drawImage((card?.hidden ? Backgrounds[backgroundCardTheme] : Cards[cardTheme][card.id]), menheraStartW + (80 * i), 93, 72, 84)
   })
 
   return canvas.toBuffer();

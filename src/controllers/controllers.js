@@ -51,8 +51,8 @@ const renderMacetava = async (req, res) => {
 }
 
 const renderBlackjack = async (req, res) => {
-  const { userCards, menheraCards, userTotal, menheraTotal, i18n, aposta, cardTheme, tableTheme } = req.body
-  const result = await buildBlackjackImage(userCards, menheraCards, userTotal, menheraTotal, i18n, aposta, cardTheme, tableTheme);
+  const { userCards, menheraCards, userTotal, menheraTotal, i18n, aposta, cardTheme, tableTheme, backgroundCardTheme } = req.body
+  const result = await buildBlackjackImage(userCards, menheraCards, userTotal, menheraTotal, i18n, aposta, cardTheme, tableTheme, backgroundCardTheme);
   res.send(result.toJSON())
 }
 

@@ -54,8 +54,8 @@ const WebSocketController = async (socket, rawRequest) => {
       break;
     }
     case 'blackjack': {
-      const { userCards, menheraCards, userTotal, menheraTotal, i18n, aposta, cardTheme, tableTheme } = data
-      const result = await buildBlackjackImage(userCards, menheraCards, userTotal, menheraTotal, i18n, aposta, cardTheme, tableTheme);
+      const { userCards, menheraCards, userTotal, menheraTotal, i18n, aposta, cardTheme, tableTheme, backgroundCardTheme } = data
+      const result = await buildBlackjackImage(userCards, menheraCards, userTotal, menheraTotal, i18n, aposta, cardTheme, tableTheme, backgroundCardTheme);
       socket.send(JSON.stringify({ id, res: result.toJSON() }))
       break;
     }
