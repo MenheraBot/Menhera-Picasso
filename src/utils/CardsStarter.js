@@ -1,18 +1,22 @@
 const CanvasImport = require('canvas')
 const { getCardByID, getBackgroundCard } = require('../ImageReader')
 
-const availableCardThemes = ['default']
-const availableCardbackgrounds = ['red']
+const availableCardThemes = ['default', 'death']
+const availableCardbackgrounds = ['red', 'blue', 'cute_menhera', 'premium']
 
-const colorCodesByTheme = {
+const colorCodesByTableTheme = {
   green: '#2aa421',
-  blue: '#3e86e9'
+  blue: '#3e86e9',
+  red: '#ff383a',
+  pink: '#f231b4',
+  rounded: '#2aa421'
 }
 
 const LodadedBackgrounds = {}
 
 const LoadedCardIcons = {
-  default: {}
+  default: {},
+  death: {}
 }
 
 const Start = () => {
@@ -30,5 +34,5 @@ const Start = () => {
 
 module.exports.Cards = LoadedCardIcons
 module.exports.Start = Start
-module.exports.Colors = colorCodesByTheme;
+module.exports.Colors = colorCodesByTableTheme;
 module.exports.Backgrounds = LodadedBackgrounds
