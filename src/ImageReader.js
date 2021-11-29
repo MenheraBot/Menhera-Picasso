@@ -31,6 +31,7 @@ const getTextBox = () => returnBufferedImage('text_box');
 const getReponseBox = () => returnBufferedImage('response_box');
 const getVasco = (quality) => returnBufferedImage(`vasco_${quality}`);
 const getMoneyBag = () => returnBufferedImage('moneybag');
+const getChristmasBaseProfile = () => returnBufferedImage('base_christmas_profile')
 
 //  Cards
 
@@ -50,6 +51,7 @@ module.exports = {
   getDeveloper,
   getRpg,
   getAstolfo,
+  getChristmasBaseProfile,
   getGado,
   getBoleham,
   getHundred,
