@@ -27,6 +27,7 @@ const getUserBadgesLink = async (user) => {
   if (user.flagsArray?.length > 0) {
     user.flagsArray.map(async a => {
       const buffer = ProfileBadges[a]
+      if (typeof buffer === 'undefined') return
       const img = await CanvasImport.loadImage(buffer).catch(er => console.log(er))
       images.push(img)
     })
