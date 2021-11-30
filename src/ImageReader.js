@@ -32,6 +32,8 @@ const getReponseBox = () => returnBufferedImage('response_box');
 const getVasco = (quality) => returnBufferedImage(`vasco_${quality}`);
 const getMoneyBag = () => returnBufferedImage('moneybag');
 const getChristmasBaseProfile = () => returnBufferedImage('base_christmas_profile')
+const getChristmas2021Badge = () => returnBufferedImage('christmas_2021');
+const getBot = () => returnBufferedImage('bot')
 
 //  Cards
 
@@ -51,8 +53,10 @@ module.exports = {
   getDeveloper,
   getRpg,
   getAstolfo,
+  getBot,
   getChristmasBaseProfile,
   getGado,
+  getChristmas2021Badge,
   getBoleham,
   getHundred,
   getPhilo,
