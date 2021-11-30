@@ -60,9 +60,9 @@ const getUserBadgesLink = async (user) => {
   return images;
 }
 
-const drawBadges = (ctx, badges, startX, startY) => {
+const drawBadges = (ctx, badges, startX, startY, badgeSize = 64) => {
   badges?.forEach((img, i) => {
-    ctx.drawImage(img, startX + (i * 64), startY, 64, 64);
+    ctx.drawImage(img, startX + (i * badgeSize), startY, badgeSize, badgeSize);
   });
 }
 
