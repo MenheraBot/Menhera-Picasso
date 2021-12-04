@@ -4,6 +4,7 @@ const returnBufferedImage = (image) => fs.readFileSync(`src/assets/images/${imag
 const returnCardsBufferedImage = (image, theme) => fs.readFileSync(`src/assets/cards/${theme}/${image}.png`)
 const returnTableBufferedImage = (image) => fs.readFileSync(`src/assets/tables/${image}.png`)
 const returnBackgroundCardBufferedImage = (theme) => fs.readFileSync(`src/assets/backgrounds/${theme}.png`)
+const returnProfleBufferedImage = (profile) => fs.readFileSync(`src/assets/profiles/${profile}.png`)
 
 // Default
 
@@ -31,9 +32,13 @@ const getTextBox = () => returnBufferedImage('text_box');
 const getReponseBox = () => returnBufferedImage('response_box');
 const getVasco = (quality) => returnBufferedImage(`vasco_${quality}`);
 const getMoneyBag = () => returnBufferedImage('moneybag');
-const getChristmasBaseProfile = () => returnBufferedImage('base_christmas_profile')
 const getChristmas2021Badge = () => returnBufferedImage('christmas_2021');
 const getBot = () => returnBufferedImage('bot')
+const getPencil = () => returnBufferedImage('pencil')
+
+// Profiles
+const getChristmasBaseProfile = () => returnProfleBufferedImage('base_christmas')
+
 
 //  Cards
 
@@ -57,6 +62,7 @@ module.exports = {
   getChristmasBaseProfile,
   getGado,
   getChristmas2021Badge,
+  getPencil,
   getBoleham,
   getHundred,
   getPhilo,
