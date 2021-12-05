@@ -20,6 +20,7 @@ const initServer = async () => {
 
   const ws = new Server({ server: httpServer });
   ws.on('connection', (socket, req) => {
+    console.log('Conectado')
     socket.id = url.parse(req.url, true).query.id ?? 0
     socket.isAlive = true;
     socket.uptime = Date.now()

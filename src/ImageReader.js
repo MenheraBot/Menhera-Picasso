@@ -4,7 +4,7 @@ const returnBufferedImage = (image) => fs.readFileSync(`src/assets/images/${imag
 const returnCardsBufferedImage = (image, theme) => fs.readFileSync(`src/assets/cards/${theme}/${image}.png`)
 const returnTableBufferedImage = (image) => fs.readFileSync(`src/assets/tables/${image}.png`)
 const returnBackgroundCardBufferedImage = (theme) => fs.readFileSync(`src/assets/backgrounds/${theme}.png`)
-const returnProfleBufferedImage = (profile) => fs.readFileSync(`src/assets/profiles/${profile}.png`)
+const returnProfileBufferedImage = (profile) => fs.readFileSync(`src/assets/profiles/${profile}.png`)
 
 // Default
 
@@ -37,8 +37,8 @@ const getBot = () => returnBufferedImage('bot')
 const getPencil = () => returnBufferedImage('pencil')
 
 // Profiles
-const getChristmasBaseProfile = () => returnProfleBufferedImage('base_christmas')
-
+const getChristmasBaseProfile = () => returnProfileBufferedImage('base_christmas')
+const getWarriorProfile = () => returnProfileBufferedImage('guerreiro')
 
 //  Cards
 
@@ -69,6 +69,7 @@ module.exports = {
   getRing,
   getVote,
   getVasco,
+  getWarriorProfile,
   getMacetava,
   getTable,
   getCardByID,
