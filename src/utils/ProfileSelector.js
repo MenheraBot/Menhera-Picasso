@@ -2,11 +2,14 @@ const { christmasProfileImage } = require("../renderers/profiles/ChristmasRender
 const { buildProfileImage } = require("../renderers/profiles/DefaultRender")
 const { fortificaçãoProfileImage } = require("../renderers/profiles/FortificaçãoRenderer")
 const { guerreiroProfileImage } = require("../renderers/profiles/GuerreiroRenderer")
+const { kawaiiProfileImage } = require("../renderers/profiles/KawaiiRenderer")
 const { upsideDownProfile } = require("../renderers/profiles/UpsideDownRenderer")
 
 module.exports = (user, marry, usageCommands, i18n, type) => {
 
   switch (type) {
+    case 'kawaii':
+      return kawaiiProfileImage(user, marry, usageCommands, i18n)
     case 'fortification':
       return fortificaçãoProfileImage(user, marry, usageCommands, i18n)
     case 'warrior':

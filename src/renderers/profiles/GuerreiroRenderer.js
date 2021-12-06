@@ -40,7 +40,7 @@ const guerreiroProfileImage = async (user, marry, usageCommands, i18n) => {
   // Username
   ctx.fillStyle = '#fff'
   ctx.textAlign = 'left'
-  ctx.font = '36px Arial'
+  ctx.font = '28px Warrior'
   ctx.strokeStyle = 'black'
   ctx.fillText(user.tag, 330, 140);
 
@@ -48,7 +48,7 @@ const guerreiroProfileImage = async (user, marry, usageCommands, i18n) => {
   // Casado
   if (marry !== null) {
     ctx.lineWidth = 1;
-    ctx.font = 'bold 16px Sans';
+    ctx.font = 'bold 16px Warrior';
     ctx.fillText(ctx.getLines(`${marry.username} ${user.data.split(' ')[0]}`, 600), 380, 180);
   }
 

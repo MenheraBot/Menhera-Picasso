@@ -8,6 +8,8 @@ const startAllNeeded = async () => {
   registerFont(join(__dirname, '..', 'assets', 'fonts', 'impact.ttf'), { family: 'Impact' })
   registerFont(join(__dirname, '..', 'assets', 'fonts', 'candy.ttf'), { family: 'Candy' })
   registerFont(join(__dirname, '..', 'assets', 'fonts', 'arial.ttf'), { family: 'Arial' })
+  registerFont(join(__dirname, '..', 'assets', 'fonts', 'kawaii.ttf'), { family: 'Kawaii' })
+  registerFont(join(__dirname, '..', 'assets', 'fonts', 'warrior.ttf'), { family: 'Warrior' })
   StartBadges()
   canvas.start()
   CardsStarter.Start()

@@ -40,6 +40,7 @@ const getPencil = () => returnBufferedImage('pencil')
 const getChristmasBaseProfile = () => returnProfileBufferedImage('base_christmas')
 const getWarriorProfile = () => returnProfileBufferedImage('guerreiro')
 const getFortificaçao = () => returnProfileBufferedImage('fortfica')
+const getKawaii = () => returnProfileBufferedImage('kawaii')
 
 //  Cards
 
@@ -65,6 +66,7 @@ module.exports = {
   getChristmas2021Badge,
   getFortificaçao,
   getPencil,
+  getKawaii,
   getBoleham,
   getHundred,
   getPhilo,
