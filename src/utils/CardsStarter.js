@@ -2,7 +2,7 @@ const CanvasImport = require('canvas')
 const { getCardByID, getBackgroundCard } = require('../ImageReader')
 
 const availableCardThemes = ['default', 'death']
-const availableCardbackgrounds = ['red', 'blue', 'cute_menhera', 'premium']
+const availableCardbackgrounds = ['red', 'blue', 'cute_menhera', 'premium', 'kawaii']
 
 const colorCodesByTableTheme = {
   green: '#2aa421',
