@@ -9,7 +9,8 @@ const colorCodesByTableTheme = {
   blue: '#3e86e9',
   red: '#ff383a',
   pink: '#f231b4',
-  rounded: '#2aa421'
+  rounded: '#2aa421',
+  gauderios: '#2aa321'
 }
 
 const LodadedBackgrounds = {}
