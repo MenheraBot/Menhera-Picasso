@@ -7,6 +7,7 @@ const { buildMacetavaImage } = require('../renderers/MacetavaRender')
 const { buildBlackjackImage } = require('../renderers/BlackjackRender')
 const { build8BallImage } = require("../renderers/EightballRender")
 const { buildVascoImage } = require('../renderers/VascoRender')
+const { buildPreviewImage } = require('../renderers/PreviewRender')
 const ProfileSelector = require("../utils/ProfileSelector")
 
 
@@ -68,6 +69,12 @@ const renderVascoImage = async (req, res) => {
   res.send(result.toJSON())
 }
 
+const renderPreview = async (req, res) => {
+  const { previewType, theme } = req.body
+  const result = await buildPreviewImage(previewType, theme)
+  res.send(result.toJSON())
+}
+
 
 module.exports = {
   renderAstolfo,
@@ -76,6 +83,7 @@ module.exports = {
   renderShip,
   renderVascoImage,
   renderProfile,
+  renderPreview,
   renderGado,
   renderMacetava,
   renderBlackjack,

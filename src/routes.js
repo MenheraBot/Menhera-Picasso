@@ -13,5 +13,6 @@ router.get('/macetava', controller.renderMacetava)
 router.get('/blackjack', controller.renderBlackjack)
 router.get('/8ball', controller.renderEightball)
 router.get('/vasco', controller.renderVascoImage)
+router.get('preview', controller.renderPreview)
 
 module.exports = router;

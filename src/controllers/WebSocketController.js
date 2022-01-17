@@ -5,8 +5,9 @@ const { buildShipImage } = require("../renderers/ShipRender")
 const { buildTrisalImage } = require("../renderers/TrisalRender")
 const { buildMacetavaImage } = require('../renderers/MacetavaRender')
 const { buildBlackjackImage } = require('../renderers/BlackjackRender')
-const { build8BallImage } = require("../renderers/EightballRender")
 const { buildVascoImage } = require('../renderers/VascoRender')
+const { build8BallImage } = require("../renderers/EightballRender")
+const { buildPreviewImage } = require("../renderers/PreviewRender")
 const ProfileSelector = require("../utils/ProfileSelector")
 
 const WebSocketController = async (socket, rawRequest) => {
@@ -68,6 +69,12 @@ const WebSocketController = async (socket, rawRequest) => {
     case 'vasco': {
       const { user, username, quality, position } = data
       const result = await buildVascoImage(user, username, quality, position)
+      socket.send(JSON.stringify({ id, res: result.toJSON() }))
+      break;
+    }
+    case 'preview': {
+      const { previewType, theme } = data
+      const result = await buildPreviewImage(previewType, theme)
       socket.send(JSON.stringify({ id, res: result.toJSON() }))
       break;
     }
