@@ -1,4 +1,4 @@
-const { getStatus, getHeart, getMana, getXp, getDamage, getArmor, getAp, getGem, getClass, getJob, getLevel } = require("../ImageReader");
+const { getStatus, getHeart, getMana, getXp, getDamage, getArmor, getAp, getGem, getClass, getLevel } = require("../ImageReader");
 const CanvasImport = require('canvas')
 const { millify } = require('millify');
 
@@ -15,7 +15,6 @@ const start = async () => {
   const magicIcon = getAp()
   const gemIcon = getGem()
   const classIcon = getClass()
-  const jobIcon = getJob()
 
 
   LoadedIcons.status = await CanvasImport.loadImage(statusimage);
@@ -28,7 +27,6 @@ const start = async () => {
   LoadedIcons.magic = await CanvasImport.loadImage(magicIcon)
   LoadedIcons.gem = await CanvasImport.loadImage(gemIcon)
   LoadedIcons.class = await CanvasImport.loadImage(classIcon)
-  LoadedIcons.job = await CanvasImport.loadImage(jobIcon)
 
 }
 
@@ -154,11 +152,11 @@ const buildStatusImage = async (user, userAvatarLink, i18n) => {
   ctx.fillText(i18n.userClass, 300, 180);
 
   // TRABALHO
-  if (user?.jobId > 0) {
-    ctx.fillStyle = 'yellow';
-    ctx.drawImage(LoadedIcons.job, 290, 200, 28, 28);
-    ctx.fillText(i18n.userJob, 320, 220);
-  }
+  /*  if (user?.jobId > 0) {
+     ctx.fillStyle = 'yellow';
+     ctx.drawImage(LoadedIcons.job, 290, 200, 28, 28);
+     ctx.fillText(i18n.userJob, 320, 220);
+   } */
   return canvas.toBuffer();
 }
 
