@@ -9,6 +9,7 @@ const { build8BallImage } = require("../renderers/EightballRender")
 const { buildVascoImage } = require('../renderers/VascoRender')
 const { buildPreviewImage } = require('../renderers/PreviewRender')
 const ProfileSelector = require("../utils/ProfileSelector")
+const { buildStatusImage } = require("../renderers/StatusRender")
 
 
 const renderAstolfo = async (req, res) => {
@@ -30,6 +31,12 @@ const renderTrisal = async (req, res) => {
 const renderShip = async (req, res) => {
   const { linkOne, linkTwo, shipValue } = req.body
   const result = await buildShipImage(linkOne, linkTwo, shipValue)
+  res.send(result.toJSON())
+}
+
+const renderStatus = async (req, res) => {
+  const { user, userAvatarLink, i18n } = req.body
+  const result = await buildStatusImage(user, userAvatarLink, i18n)
   res.send(result.toJSON())
 }
 
@@ -79,6 +86,7 @@ const renderPreview = async (req, res) => {
 module.exports = {
   renderAstolfo,
   renderPhilo,
+  renderStatus,
   renderTrisal,
   renderShip,
   renderVascoImage,

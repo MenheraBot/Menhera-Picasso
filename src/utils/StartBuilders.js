@@ -3,6 +3,7 @@ const CardsStarter = require('./CardsStarter')
 const { registerFont } = require('canvas')
 const { join } = require('path')
 const { Start: StartBadges } = require('./ProfileUtils')
+const { start } = require('../renderers/StatusRender')
 
 const startAllNeeded = async () => {
   registerFont(join(__dirname, '..', 'assets', 'fonts', 'impact.ttf'), { family: 'Impact' })
@@ -13,6 +14,7 @@ const startAllNeeded = async () => {
   StartBadges()
   canvas.start()
   CardsStarter.Start()
+  await start()
 }
 
 

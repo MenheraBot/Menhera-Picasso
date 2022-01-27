@@ -36,6 +36,17 @@ const getChristmas2021Badge = () => returnBufferedImage('christmas_2021');
 const getBot = () => returnBufferedImage('bot')
 const getPencil = () => returnBufferedImage('pencil')
 
+const getAp = () => returnBufferedImage('ap');
+const getArmor = () => returnBufferedImage('armor');
+const getClass = () => returnBufferedImage('class');
+const getDamage = () => returnBufferedImage('damage');
+const getGem = () => returnBufferedImage('gem');
+const getHeart = () => returnBufferedImage('heart');
+const getLevel = () => returnBufferedImage('level');
+const getMana = () => returnBufferedImage('mana');
+const getStatus = () => returnBufferedImage('status');
+const getXp = () => returnBufferedImage('xp');
+
 // Profiles
 const getChristmasBaseProfile = () => returnProfileBufferedImage('base_christmas')
 const getWarriorProfile = () => returnProfileBufferedImage('guerreiro')
@@ -71,7 +82,17 @@ module.exports = {
   getHundred,
   getPhilo,
   getRing,
+  getAp,
+  getArmor,
+  getClass,
+  getDamage,
+  getGem,
+  getHeart,
+  getLevel,
+  getMana,
   getVote,
+  getStatus,
+  getXp,
   getVasco,
   getWarriorProfile,
   getMacetava,
