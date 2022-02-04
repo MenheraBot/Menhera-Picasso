@@ -35,6 +35,7 @@ const getMoneyBag = () => returnBufferedImage('moneybag');
 const getChristmas2021Badge = () => returnBufferedImage('christmas_2021');
 const getBot = () => returnBufferedImage('bot')
 const getPencil = () => returnBufferedImage('pencil')
+const getBeta = () => returnBufferedImage('beta')
 
 const getAp = () => returnBufferedImage('ap');
 const getArmor = () => returnBufferedImage('armor');
@@ -65,6 +66,7 @@ module.exports = {
   getBalance,
   getBirthday,
   getBanido,
+  getBeta,
   getMenheraDev,
   getBravery,
   getBrilliance,
