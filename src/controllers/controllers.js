@@ -42,6 +42,7 @@ const renderStatus = async (req, res) => {
 
 const renderProfile = async (req, res) => {
   const { user, marry, usageCommands, i18n, type } = req.body
+  if (typeof user.hiddingBadges === 'undefined') user.hiddingBadges = []
   const result = await ProfileSelector(user, marry, usageCommands, i18n, type)
   res.send(result.toJSON())
 }

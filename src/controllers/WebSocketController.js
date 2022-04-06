@@ -45,6 +45,7 @@ const WebSocketController = async (socket, rawRequest) => {
     }
     case 'profile': {
       const { user, marry, usageCommands, i18n, type } = data
+      if (typeof user.hiddingBadges === 'undefined') user.hiddingBadges = []
       const result = await ProfileSelector(user, marry, usageCommands, i18n, type)
       socket.send(JSON.stringify({ id, res: result.toJSON() }))
       break;
