@@ -19,9 +19,9 @@ const initServer = async () => {
   });
 
   const ws = new Server({ server: httpServer });
+
   ws.on('connection', (socket, req) => {
-    console.log('Conectado')
-    socket.id = url.parse(req.url, true).query.id ?? 0
+    socket.id = url.parse(req.url, true).query.id ?? 'UNKNOWN'
     socket.isAlive = true;
     socket.uptime = Date.now()
 
@@ -34,8 +34,6 @@ const initServer = async () => {
   })
 
   app.get('/ping', (_, res) => {
-    const clients = []
-    ws.clients.forEach(a => clients.push({ id: a.id, ping: a.responseTime, uptime: Date.now() - a.uptime }))
     res.status(200).json({ http: { uptime: Date.now() - startTime }, ws: [...ws.clients.values()].map(a => ({ id: Number(a.id), ping: a.responseTime, uptime: Date.now() - a.uptime })) })
   })
 
