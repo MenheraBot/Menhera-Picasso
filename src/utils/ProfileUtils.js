@@ -24,16 +24,24 @@ const Start = () => {
   ProfileBadges['hundred'] = getHundred()
 }
 
+const DiscordFlagsToMenheraBadges = {
+  EARLY_VERIFIED_BOT_DEVELOPER: 5,
+  HOUSE_BALANCE: 2,
+  HOUSE_BRILLIANCE: 3,
+  HOUSE_BRAVERY: 4,
+};
 
 const getUserBadgesLink = async (user) => {
   const images = [];
 
   if (user.flagsArray?.length > 0) {
     user.flagsArray.map(async a => {
-      const buffer = ProfileBadges[a]
-      if (typeof buffer === 'undefined') return
-      const img = await CanvasImport.loadImage(buffer).catch(er => console.log(er))
-      images.push(img)
+      if (!user.hiddingBadges.includes(DiscordFlagsToMenheraBadges[a])) {
+        const buffer = ProfileBadges[a]
+        if (typeof buffer === 'undefined') return
+        const img = await CanvasImport.loadImage(buffer).catch(er => console.log(er))
+        images.push(img)
+      }
     })
   }
 
@@ -55,9 +63,11 @@ const getUserBadgesLink = async (user) => {
   if (user.badges?.length > 0) {
     for (const i in user.badges) {
       const { id } = user.badges[i];
-      const buffer = ProfileBadges[id];
-      const img = await CanvasImport.loadImage(buffer).catch(er => console.log(er));
-      images.push(img);
+      if (!user.hiddingBadges.includes(id)) {
+        const buffer = ProfileBadges[id];
+        const img = await CanvasImport.loadImage(buffer).catch(er => console.log(er));
+        images.push(img);
+      }
     }
   }
 
