@@ -26,9 +26,9 @@ const buildBlackjackImage = async (userCards, menheraCards, userTotal, menheraTo
 
   ctx.fillStyle = 'yellow'
   ctx.drawImage(moneybag, 177, 193, 64, 64)
-  ctx.drawImage(moneybag, 327, 193, 64, 64)
-  ctx.fillText(`${aposta * 2}`, 250, 240)
-  ctx.strokeText(`${aposta * 2}`, 250, 240)
+  ctx.fillText(`${aposta * 2}`, 240, 240)
+  ctx.strokeText(`${aposta * 2}`, 240, 240)
+  ctx.drawImage(moneybag, 335, 193, 64, 64)
 
   ctx.fillStyle = Profilebadges.ShadeColor(Colors[tableTheme], -10);
 
