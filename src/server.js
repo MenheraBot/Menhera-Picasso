@@ -25,6 +25,8 @@ const initServer = async () => {
     socket.isAlive = true;
     socket.uptime = Date.now()
 
+    console.log(`[CONNECTION] - Connection stablished with ID ${socket.id}`)
+
     socket.on('message', (rawRequest) => WebSocketController(socket, rawRequest));
 
     socket.on('pong', (ms) => {

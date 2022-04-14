@@ -4,9 +4,9 @@ const { fortificaçãoProfileImage } = require("../renderers/profiles/Fortifica�
 const { guerreiroProfileImage } = require("../renderers/profiles/GuerreiroRenderer")
 const { kawaiiProfileImage } = require("../renderers/profiles/KawaiiRenderer")
 const { upsideDownProfile } = require("../renderers/profiles/UpsideDownRenderer")
+const { iD03ProfileImage } = require('../renderers/profiles/Id03Renderer')
 
 module.exports = (user, marry, usageCommands, i18n, type) => {
-
   switch (type) {
     case 'kawaii':
       return kawaiiProfileImage(user, marry, usageCommands, i18n)
@@ -20,6 +20,8 @@ module.exports = (user, marry, usageCommands, i18n, type) => {
       return upsideDownProfile(user, marry, usageCommands, i18n)
     case 'default':
       return buildProfileImage(user, marry, usageCommands, i18n)
+    case 'id03':
+      return iD03ProfileImage(user, marry, usageCommands, i18n)
     default:
       return buildProfileImage(user, marry, usageCommands, i18n)
   }

@@ -53,6 +53,7 @@ const getChristmasBaseProfile = () => returnProfileBufferedImage('base_christmas
 const getWarriorProfile = () => returnProfileBufferedImage('guerreiro')
 const getFortificaçao = () => returnProfileBufferedImage('fortfica')
 const getKawaii = () => returnProfileBufferedImage('kawaii')
+const getId03 = () => returnProfileBufferedImage('iD03')
 
 //  Cards
 
@@ -70,6 +71,7 @@ module.exports = {
   getMenheraDev,
   getBravery,
   getBrilliance,
+  getId03,
   getDeveloper,
   getRpg,
   getAstolfo,
