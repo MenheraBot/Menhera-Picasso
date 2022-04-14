@@ -54,6 +54,7 @@ const getWarriorProfile = () => returnProfileBufferedImage('guerreiro')
 const getFortificaçao = () => returnProfileBufferedImage('fortfica')
 const getKawaii = () => returnProfileBufferedImage('kawaii')
 const getId03 = () => returnProfileBufferedImage('iD03')
+const getWithoutSoul = () => returnProfileBufferedImage('without_soul')
 
 //  Cards
 
@@ -66,6 +67,7 @@ module.exports = {
   getBadgeOne,
   getBalance,
   getBirthday,
+  getWithoutSoul,
   getBanido,
   getBeta,
   getMenheraDev,

@@ -5,6 +5,7 @@ const { guerreiroProfileImage } = require("../renderers/profiles/GuerreiroRender
 const { kawaiiProfileImage } = require("../renderers/profiles/KawaiiRenderer")
 const { upsideDownProfile } = require("../renderers/profiles/UpsideDownRenderer")
 const { iD03ProfileImage } = require('../renderers/profiles/Id03Renderer')
+const { withoutSoulProfileImage } = require('../renderers/profiles/WithoutSoulRenderer')
 
 module.exports = (user, marry, usageCommands, i18n, type) => {
   switch (type) {
@@ -22,6 +23,8 @@ module.exports = (user, marry, usageCommands, i18n, type) => {
       return buildProfileImage(user, marry, usageCommands, i18n)
     case 'id03':
       return iD03ProfileImage(user, marry, usageCommands, i18n)
+    case 'without_soul':
+      return withoutSoulProfileImage(user, marry, usageCommands, i18n)
     default:
       return buildProfileImage(user, marry, usageCommands, i18n)
   }
