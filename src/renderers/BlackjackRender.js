@@ -1,5 +1,5 @@
 const CanvasImport = require('canvas')
-const { getTable, getMoneyBag } = require('../ImageReader');
+const { getTable } = require('../ImageReader');
 const { Cards, Colors, Backgrounds } = require('../utils/CardsStarter');
 const Profilebadges = require('../utils/ProfileUtils')
 
@@ -8,7 +8,6 @@ const buildBlackjackImage = async (userCards, menheraCards, userTotal, menheraTo
   const ctx = canvas.getContext('2d');
 
   const talbeImage = await CanvasImport.loadImage(getTable(tableTheme))
-  const moneybag = await CanvasImport.loadImage(getMoneyBag())
 
   ctx.drawImage(talbeImage, 0, 0, canvas.width, canvas.height);
   ctx.fillStyle = Colors[tableTheme];
@@ -21,14 +20,10 @@ const buildBlackjackImage = async (userCards, menheraCards, userTotal, menheraTo
   ctx.strokeText(`${i18n.yourHand}\n       ${userTotal}`, 280, 300)
 
   ctx.textAlign = 'start'
-  ctx.fillStyle = Profilebadges.ShadeColor(Colors[tableTheme], 10);
-  ctx.roundRect(167, 190, 240, 70, 20, true, true);
 
   ctx.fillStyle = 'yellow'
-  ctx.drawImage(moneybag, 177, 193, 64, 64)
   ctx.fillText(`${aposta * 2}`, 240, 240)
   ctx.strokeText(`${aposta * 2}`, 240, 240)
-  ctx.drawImage(moneybag, 335, 193, 64, 64)
 
   ctx.fillStyle = Profilebadges.ShadeColor(Colors[tableTheme], -10);
 

@@ -31,7 +31,6 @@ const getMenhera = (number, type) => returnBufferedImage(`${type}_${number}`);
 const getTextBox = () => returnBufferedImage('text_box');
 const getReponseBox = () => returnBufferedImage('response_box');
 const getVasco = (quality) => returnBufferedImage(`vasco_${quality}`);
-const getMoneyBag = () => returnBufferedImage('moneybag');
 const getChristmas2021Badge = () => returnBufferedImage('christmas_2021');
 const getBot = () => returnBufferedImage('bot')
 const getPencil = () => returnBufferedImage('pencil')
@@ -108,7 +107,6 @@ module.exports = {
   getBedroom,
   getTextBox,
   getReponseBox,
-  getMoneyBag,
   getHalloween,
   getBackgroundCard,
 }
