@@ -10,6 +10,7 @@ const { build8BallImage } = require("../renderers/EightballRender")
 const { buildPreviewImage } = require("../renderers/PreviewRender")
 const ProfileSelector = require("../utils/ProfileSelector")
 const { buildStatusImage } = require("../renderers/StatusRender")
+const { buildFluffetyImage } = require("../renderers/FluffetyRender")
 
 const WebSocketController = async (socket, rawRequest) => {
   const { type, data, id } = JSON.parse(rawRequest.toString());
@@ -83,6 +84,12 @@ const WebSocketController = async (socket, rawRequest) => {
     case 'preview': {
       const { previewType, theme } = data
       const result = await buildPreviewImage(previewType, theme)
+      socket.send(JSON.stringify({ id, res: result.toJSON() }))
+      break;
+    }
+    case 'fluffety': {
+      const { race, commode, percentages } = data
+      const result = await buildFluffetyImage(race, commode, percentages)
       socket.send(JSON.stringify({ id, res: result.toJSON() }))
       break;
     }

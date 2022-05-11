@@ -5,6 +5,7 @@ const returnCardsBufferedImage = (image, theme) => fs.readFileSync(`src/assets/c
 const returnTableBufferedImage = (image) => fs.readFileSync(`src/assets/tables/${image}.png`)
 const returnBackgroundCardBufferedImage = (theme) => fs.readFileSync(`src/assets/backgrounds/${theme}.png`)
 const returnProfileBufferedImage = (profile) => fs.readFileSync(`src/assets/profiles/${profile}.png`)
+const returnFluffetyImage = (path) => fs.readFileSync(`src/assets/fluffety/${path}.png`)
 
 // Default
 
@@ -61,6 +62,10 @@ const getTable = (theme = 'green') => returnTableBufferedImage(theme);
 const getBackgroundCard = (theme = 'red') => returnBackgroundCardBufferedImage(theme);
 const getCardByID = (cardID, theme = 'default') => returnCardsBufferedImage(cardID, theme);
 
+// Fluffetys
+
+const getFluffetyExample = (race = 'hamsin') => returnFluffetyImage(`/examples/${race}`)
+const getFluffetyIcon = (icon) => returnFluffetyImage(`/icons/${icon}`)
 
 module.exports = {
   getBadgeOne,
@@ -80,6 +85,8 @@ module.exports = {
   getChristmasBaseProfile,
   getGado,
   getChristmas2021Badge,
+  getFluffetyExample,
+  getFluffetyIcon,
   getFortificaçao,
   getPencil,
   getKawaii,

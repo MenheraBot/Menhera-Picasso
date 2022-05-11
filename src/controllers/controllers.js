@@ -10,6 +10,7 @@ const { buildVascoImage } = require('../renderers/VascoRender')
 const { buildPreviewImage } = require('../renderers/PreviewRender')
 const ProfileSelector = require("../utils/ProfileSelector")
 const { buildStatusImage } = require("../renderers/StatusRender")
+const { buildFluffetyImage } = require("../renderers/FluffetyRender")
 
 
 const renderAstolfo = async (req, res) => {
@@ -83,11 +84,17 @@ const renderPreview = async (req, res) => {
   res.send(result.toJSON())
 }
 
+const renderFluffety = async (req, res) => {
+  const { race, commode, percentages } = req.body
+  const result = await buildFluffetyImage(race, commode, percentages)
+  res.send(result.toJSON())
+}
 
 module.exports = {
   renderAstolfo,
   renderPhilo,
   renderStatus,
+  renderFluffety,
   renderTrisal,
   renderShip,
   renderVascoImage,

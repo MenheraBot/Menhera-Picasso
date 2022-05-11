@@ -7,6 +7,7 @@ const routes = require('./routes')
 const { Server } = require('ws')
 const { isAuthorized } = require('./utils/isAuthorized')
 const WebSocketController = require('./controllers/WebSocketController')
+const { buildFluffetyImage } = require('./renderers/FluffetyRender')
 
 const initServer = async () => {
   const startTime = Date.now()
@@ -18,6 +19,51 @@ const initServer = async () => {
     console.log('[SERVER] Menhera Picasso started at port 2080')
   });
 
+  /*
+    -- CODIGO PARA TESTAR IMAGENS -- 
+    Acessar http://localhost:2080
+
+(() => {
+    let btn = document.createElement("button")
+    let img = document.createElement("img")
+    let line = document.createElement("p")
+
+    img.setAttribute('id', 'image')
+    
+    btn.innerHTML = "Clica Pra update"
+    btn.style.width = '1000px'
+    btn.style['font-size'] = '130px' 
+    btn.style.height = "300px"
+    
+    document.body.appendChild(btn)
+    document.body.appendChild(line)
+    document.body.appendChild(img)
+    
+    btn.onclick = async () => {
+
+      const res = await fetch('http://localhost:2080/test')
+       const data = await res.json()
+    const img = document.getElementById("image");
+
+        img.src = 'data:image/png;base64,' + data.data
+
+};
+    
+})()
+
+app.get('/test', async (_, res) => {
+  const result = await buildFluffetyImage('hamsin', 'outside', { energy: 25, foody: 50, happy: 80, healthy: 100 })
+
+  res.send({ data: result.toString('base64') })
+})
+  */
+
+  app.get('/test', async (_, res) => {
+    const result = await buildFluffetyImage('hamsin', 'outside', { energy: 25, foody: 50, happy: 80, healthy: 100 })
+
+    res.send({ data: result.toString('base64') })
+  })
+
   const ws = new Server({ server: httpServer });
 
   ws.on('connection', (socket, req) => {
@@ -25,13 +71,19 @@ const initServer = async () => {
     socket.isAlive = true;
     socket.uptime = Date.now()
 
-    console.log(`[CONNECTION] - Connection stablished with ID ${socket.id}`)
+    if (isNaN(Number(socket.id))) return socket.close(4400, 'Invalid Client ID')
+
+    console.log(`[CONNECTION] - Connection stablished with Client ID ${socket.id}`)
 
     socket.on('message', (rawRequest) => WebSocketController(socket, rawRequest));
 
     socket.on('pong', (ms) => {
       socket.isAlive = true;
       socket.responseTime = Date.now() - ms.toString();
+    })
+
+    socket.on('close', (code, reason) => {
+      console.log(`[CLOSE] - Client ${socket.id} closed by client-side with code ${code}. ${reason.length > 0 ? `Reason: ${reason.toString()}` : 'No reason especified'}`)
     })
   })
 
@@ -41,7 +93,10 @@ const initServer = async () => {
 
   setInterval(() => {
     ws.clients.forEach((skt) => {
-      if (skt.isAlive === false) return skt.terminate()
+      if (skt.isAlive === false) {
+        console.log(`[CLOSE] - Client ${skt.id} has been terminated by server-side`)
+        return skt.terminate()
+      }
 
       skt.isAlive = false;
       skt.ping(Date.now())
