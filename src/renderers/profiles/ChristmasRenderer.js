@@ -4,7 +4,7 @@ const ProfileBadges = require('../../utils/ProfileUtils');
 
 const captalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 
-const christmasProfileImage = async (user, marry, usageCommands, i18n) => {
+const christmasProfileImage = async (user, usageCommands, i18n) => {
   // Criação da Área de Trabalho
   const canvas = CanvasImport.createCanvas(1080, 720);
   const ctx = canvas.getContext('2d');
@@ -50,11 +50,11 @@ const christmasProfileImage = async (user, marry, usageCommands, i18n) => {
   ctx.strokeText(ctx.getLines(user.nota, 920).join('\n'), 90, 506);
 
   // Casado
-  if (marry !== null) {
+  if (user.marry !== null) {
     ctx.font = 'bold 24px Sans';
     ctx.lineWidth = 1;
-    ctx.fillText(ctx.getLines(`${marry.username} ${user.data.split(' ')[0]}`, 600), 400, 140);
-    ctx.strokeText(ctx.getLines(`${marry.username} ${user.data.split(' ')[0]}`, 600), 400, 140);
+    ctx.fillText(ctx.getLines(`${user.marry.username} ${user.data.split(' ')[0]}`, 600), 400, 140);
+    ctx.strokeText(ctx.getLines(`${user.marry.username} ${user.data.split(' ')[0]}`, 600), 400, 140);
   }
 
   // Mamadas e Mamou

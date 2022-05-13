@@ -4,7 +4,7 @@ const ProfileBadges = require('../../utils/ProfileUtils');
 
 const captalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 
-const guerreiroProfileImage = async (user, marry, usageCommands, i18n) => {
+const guerreiroProfileImage = async (user, usageCommands, i18n) => {
   // Criação da Área de Trabalho
   const canvas = CanvasImport.createCanvas(1080, 720);
   const ctx = canvas.getContext('2d');
@@ -46,10 +46,10 @@ const guerreiroProfileImage = async (user, marry, usageCommands, i18n) => {
 
 
   // Casado
-  if (marry !== null) {
+  if (user.marry !== null) {
     ctx.lineWidth = 1;
     ctx.font = 'bold 16px Warrior';
-    ctx.fillText(ctx.getLines(`${marry.username} ${user.data.split(' ')[0]}`, 600), 380, 180);
+    ctx.fillText(ctx.getLines(`${user.marry.username} ${user.data.split(' ')[0]}`, 600), 380, 180);
   }
 
 

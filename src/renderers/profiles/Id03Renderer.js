@@ -2,7 +2,7 @@ const CanvasImport = require('canvas');
 const { getId03 } = require('../../ImageReader');
 const ProfileBadges = require('../../utils/ProfileUtils');
 
-const iD03ProfileImage = async (user, marry, usageCommands, i18n) => {
+const iD03ProfileImage = async (user, usageCommands, i18n) => {
   // Criação da Área de Trabalho
   const canvas = CanvasImport.createCanvas(1080, 720);
   const ctx = canvas.getContext('2d');
@@ -31,10 +31,10 @@ const iD03ProfileImage = async (user, marry, usageCommands, i18n) => {
   ctx.fillText(ctx.getLines(user.nota, 700).join('\n'), 200, 540);
   ctx.strokeText(ctx.getLines(user.nota, 700).join('\n'), 200, 540);
 
-  if (marry !== null) {
+  if (user.marry !== null) {
     ctx.lineWidth = 1;
     ctx.font = 'bold 20px Pixellari';
-    ctx.fillText(ctx.getLines(`${marry.username} ${user.data.split(' ')[0]}`, 600), 445, 220);
+    ctx.fillText(ctx.getLines(`${user.marry.username} ${user.data.split(' ')[0]}`, 600), 445, 220);
   }
 
   ctx.font = `${user.mamou >= 1000 || user.mamadas >= 1000 ? 22 : 24}px Pixellari`;

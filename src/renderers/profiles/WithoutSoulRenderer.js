@@ -2,7 +2,7 @@ const CanvasImport = require('canvas');
 const { getWithoutSoul } = require('../../ImageReader');
 const ProfileBadges = require('../../utils/ProfileUtils');
 
-const withoutSoulProfileImage = async (user, marry) => {
+const withoutSoulProfileImage = async (user) => {
   // Criação da Área de Trabalho
   const canvas = CanvasImport.createCanvas(1080, 720);
   const ctx = canvas.getContext('2d');
@@ -27,9 +27,9 @@ const withoutSoulProfileImage = async (user, marry) => {
   ctx.font = `20px Postamt`;
   ctx.fillText(ctx.getLines(user.nota, 520).join('\n\n'), 385, 180);
 
-  if (marry !== null) {
+  if (user.marry !== null) {
     ctx.font = '28px Gabrielle';
-    ctx.fillText(ctx.getLines(`${marry.username} | ${user.data.split(' ')[0]}`, 600), 440, 320);
+    ctx.fillText(ctx.getLines(`${user.marry.username} | ${user.data.split(' ')[0]}`, 600), 440, 320);
   }
 
 

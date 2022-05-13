@@ -3,7 +3,7 @@ const ProfileBadges = require('../../utils/ProfileUtils');
 
 const captalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 
-const buildProfileImage = async (user, marry, usageCommands, i18n) => {
+const buildProfileImage = async (user, usageCommands, i18n) => {
   // Criação da Área de Trabalho
   const canvas = CanvasImport.createCanvas(1080, 720);
   const ctx = canvas.getContext('2d');
@@ -78,12 +78,12 @@ const buildProfileImage = async (user, marry, usageCommands, i18n) => {
   }
 
   // Casado
-  if (marry !== null) {
+  if (user.marry !== null) {
     const ringEmoji = await CanvasImport.loadImage(ProfileBadges.Badges['ring']).catch(er => console.log(er));
     ctx.lineWidth = 1;
     ctx.textAlign = 'left';
-    ctx.fillText(`${marry.tag} | ${user.data}`, 80, 535);
-    ctx.strokeText(`${marry.tag} | ${user.data}`, 80, 535);
+    ctx.fillText(`${user.marry.tag} | ${user.data}`, 80, 535);
+    ctx.strokeText(`${user.marry.tag} | ${user.data}`, 80, 535);
     ctx.drawImage(ringEmoji, 10, 490, 55, 55);
   }
 
