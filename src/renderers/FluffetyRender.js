@@ -26,43 +26,43 @@ const buildFluffetyImage = async (race, commode, fluffetyStatus) => {
   // Draw status boxes
   ctx.fillStyle = 'rgba(0, 0, 0, 0.6)'
   ctx.fillRect(49, 39, 200, 200)
-  ctx.fillRect(286, 39, 200, 200)
+  //ctx.fillRect(286, 39, 200, 200)
   ctx.fillRect(532, 39, 200, 200)
-  ctx.fillRect(776, 39, 200, 200)
+  //ctx.fillRect(776, 39, 200, 200)
 
 
   const energyFill = getAmountToFill(200, fluffetyStatus.energy)
-  const foodyFill = getAmountToFill(200, fluffetyStatus.foody)
+  //const foodyFill = getAmountToFill(200, fluffetyStatus.foody)
   const happyFill = getAmountToFill(200, fluffetyStatus.happy)
-  const healthyFill = getAmountToFill(200, fluffetyStatus.healthy)
+  // const healthyFill = getAmountToFill(200, fluffetyStatus.healthy)
 
   ctx.fillStyle = getColorByPercentage(fluffetyStatus.energy)
   ctx.fillRect(49, 200 - energyFill + 39, 200, energyFill)
 
-  ctx.fillStyle = getColorByPercentage(fluffetyStatus.foody)
-  ctx.fillRect(286, 200 - foodyFill + 39, 200, foodyFill)
+  // ctx.fillStyle = getColorByPercentage(fluffetyStatus.foody)
+  // ctx.fillRect(286, 200 - foodyFill + 39, 200, foodyFill)
 
   ctx.fillStyle = getColorByPercentage(fluffetyStatus.happy)
   ctx.fillRect(532, 200 - happyFill + 39, 200, happyFill)
 
-  ctx.fillStyle = getColorByPercentage(fluffetyStatus.healthy)
-  ctx.fillRect(776, 200 - healthyFill + 36, 200, healthyFill)
+  // ctx.fillStyle = getColorByPercentage(fluffetyStatus.healthy)
+  //ctx.fillRect(776, 200 - healthyFill + 36, 200, healthyFill)
 
   const energyIcon = await CanvasImport.loadImage(getFluffetyIcon('energy'))
-  const foodIcon = await CanvasImport.loadImage(getFluffetyIcon('food'))
+  ///const foodIcon = await CanvasImport.loadImage(getFluffetyIcon('food'))
   const happyIcon = await CanvasImport.loadImage(getFluffetyIcon('happy'))
-  const hearthIcon = await CanvasImport.loadImage(getFluffetyIcon('hearth'))
+  // const hearthIcon = await CanvasImport.loadImage(getFluffetyIcon('hearth'))
 
   ctx.drawImage(energyIcon, 100, 60, 100, 100)
-  ctx.drawImage(foodIcon, 340, 60, 100, 100)
+  //ctx.drawImage(foodIcon, 340, 60, 100, 100)
   ctx.drawImage(happyIcon, 585, 60, 100, 100)
-  ctx.drawImage(hearthIcon, 830, 60, 100, 100)
+  // ctx.drawImage(hearthIcon, 830, 60, 100, 100)
 
   ctx.lineWidth = 10
   ctx.strokeRect(49, 39, 200, 200)
-  ctx.strokeRect(286, 39, 200, 200)
+  // ctx.strokeRect(286, 39, 200, 200)
   ctx.strokeRect(532, 39, 200, 200)
-  ctx.strokeRect(776, 39, 200, 200)
+  // ctx.strokeRect(776, 39, 200, 200)
 
   ctx.fillStyle = 'white';
   ctx.font = 'bold 52px Sans';
@@ -70,14 +70,14 @@ const buildFluffetyImage = async (race, commode, fluffetyStatus) => {
   ctx.lineWidth = 1
 
   ctx.fillText(`${fluffetyStatus.energy}%`, 150, 210)
-  ctx.fillText(`${fluffetyStatus.foody}%`, 390, 210)
+  // ctx.fillText(`${fluffetyStatus.foody}%`, 390, 210)
   ctx.fillText(`${fluffetyStatus.happy}%`, 640, 210)
-  ctx.fillText(`${fluffetyStatus.healthy}%`, 885, 210)
+  //  ctx.fillText(`${fluffetyStatus.healthy}%`, 885, 210)
 
   ctx.strokeText(`${fluffetyStatus.energy}%`, 150, 210)
-  ctx.strokeText(`${fluffetyStatus.foody}%`, 390, 210)
+  //  ctx.strokeText(`${fluffetyStatus.foody}%`, 390, 210)
   ctx.strokeText(`${fluffetyStatus.happy}%`, 640, 210)
-  ctx.strokeText(`${fluffetyStatus.healthy}%`, 885, 210)
+  //ctx.strokeText(`${fluffetyStatus.healthy}%`, 885, 210)
 
 
   return canvas.toBuffer();

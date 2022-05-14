@@ -7,7 +7,6 @@ const routes = require('./routes')
 const { Server } = require('ws')
 const { isAuthorized } = require('./utils/isAuthorized')
 const WebSocketController = require('./controllers/WebSocketController')
-const { buildFluffetyImage } = require('./renderers/FluffetyRender')
 
 const initServer = async () => {
   const startTime = Date.now()
@@ -51,18 +50,18 @@ const initServer = async () => {
     
 })()
 
+const { buildFluffetyImage } = require('./renderers/FluffetyRender')
+app.get('/test', async (_, res) => {
+  const result = await buildFluffetyImage('hamsin', 'outside', { energy: 25, foody: 50, happy: 80, healthy: 100 })
+
+  res.send({ data: result.toString('base64') })
+})
 app.get('/test', async (_, res) => {
   const result = await buildFluffetyImage('hamsin', 'outside', { energy: 25, foody: 50, happy: 80, healthy: 100 })
 
   res.send({ data: result.toString('base64') })
 })
   */
-
-  app.get('/test', async (_, res) => {
-    const result = await buildFluffetyImage('hamsin', 'outside', { energy: 25, foody: 50, happy: 80, healthy: 100 })
-
-    res.send({ data: result.toString('base64') })
-  })
 
   const ws = new Server({ server: httpServer });
 
