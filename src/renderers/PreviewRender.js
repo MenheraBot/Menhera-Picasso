@@ -32,7 +32,7 @@ const buildPreviewImage = async (type, theme) => {
     }
   }
 
-  return canvas.toBuffer();
+  return canvas.toBuffer()
 }
 
 module.exports = { buildPreviewImage }
