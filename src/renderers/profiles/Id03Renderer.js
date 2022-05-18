@@ -38,11 +38,11 @@ const iD03ProfileImage = async (user, usageCommands, i18n) => {
   }
 
   ctx.font = `${user.mamou >= 1000 || user.mamadas >= 1000 ? 22 : 24}px Pixellari`;
-  ctx.fillText(`${i18n.mamado}: ${user.mamou}`, 850, 145)
-  ctx.strokeText(`${i18n.mamado}: ${user.mamou}`, 850, 145)
+  ctx.fillText(`${i18n.mamado}: ${user.mamadas}`, 850, 145)
+  ctx.strokeText(`${i18n.mamado}: ${user.mamadas}`, 850, 145)
 
-  ctx.fillText(`${i18n.mamou}: ${user.mamadas}`, 850, 175)
-  ctx.strokeText(`${i18n.mamou}: ${user.mamadas}`, 850, 175)
+  ctx.fillText(`${i18n.mamou}: ${user.mamou}`, 850, 175)
+  ctx.strokeText(`${i18n.mamou}: ${user.mamou}`, 850, 175)
 
   if (usageCommands) {
     ctx.font = '24px Pixellari';
