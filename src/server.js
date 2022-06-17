@@ -7,9 +7,10 @@ const routes = require('./routes')
 const { Server } = require('ws')
 const { isAuthorized } = require('./utils/isAuthorized')
 const WebSocketController = require('./controllers/WebSocketController')
+const Redis = require('./utils/CacheManager').getInstance()
 
 const initServer = async () => {
-  const startTime = Date.now()
+  const serverStartedAt = Date.now()
   await startAllNeeded().then(() => console.log('[START] All dependencies started'))
   app.use(cors())
   app.use(express.json())
@@ -86,8 +87,15 @@ app.get('/test', async (_, res) => {
     })
   })
 
-  app.get('/ping', (_, res) => {
-    res.status(200).json({ http: { uptime: Date.now() - startTime }, ws: [...ws.clients.values()].map(a => ({ id: Number(a.id), ping: a.responseTime, uptime: Date.now() - a.uptime })) })
+  app.get('/ping', async (_, res) => {
+    const startTime = Date.now();
+    Redis.online ? await Redis.client.ping() : 'OFFLINE'
+    const redisPing = Date.now() - startTime;
+    res.status(200).json({
+      http: { uptime: Date.now() - serverStartedAt },
+      ws: [...ws.clients.values()].map(a => ({ id: Number(a.id), ping: a.responseTime, uptime: Date.now() - a.uptime })),
+      redis: Redis.online ? `${redisPing}ms` : 'OFFLINE'
+    })
   })
 
   setInterval(() => {

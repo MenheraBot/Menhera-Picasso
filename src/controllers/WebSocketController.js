@@ -11,24 +11,10 @@ const { buildPreviewImage } = require("../renderers/PreviewRender")
 const ProfileSelector = require("../utils/ProfileSelector")
 const { buildStatusImage } = require("../renderers/StatusRender")
 const { buildFluffetyImage } = require("../renderers/FluffetyRender")
-const { inCache, updateInCache } = require('../cache/index')
 
 const WebSocketController = async (socket, rawRequest) => {
   const { type, data, id } = JSON.parse(rawRequest.toString());
   switch (type) {
-    case 'beta': {
-      const isInCache = inCache(data)
-      if (isInCache) {
-        socket.send(JSON.stringify({ id, res: isInCache }))
-        return
-      }
-      const { user, usageCommands, i18n, type } = data
-      if (typeof user.hiddingBadges === 'undefined') user.hiddingBadges = []
-      const result = await ProfileSelector(user, usageCommands, i18n, type)
-      socket.send(JSON.stringify({ id, res: result.toJSON() }))
-      updateInCache(data, result)
-      break;
-    }
     case 'astolfo': {
       const result = await buildAstolfoImage(data.text)
       socket.send(JSON.stringify({ id, res: result.toJSON() }))

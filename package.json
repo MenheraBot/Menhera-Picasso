@@ -26,6 +26,7 @@
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "millify": "^4.0.0",
+    "redis": "^4.1.0",
     "ws": "^8.5.0"
   },
   "devDependencies": {
