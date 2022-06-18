@@ -53,7 +53,7 @@ Now we can connect to WS or HTTP to 2080 port!
 1. 📥 Download the image
 
 ```bash
-docker pull ghcr.io/menherabot/amandinha:latest
+docker pull ghcr.io/menherabot/piacsso:latest
 ```
 
 > You need to be [logged in](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry#authenticating-to-the-container-registry)
@@ -61,7 +61,7 @@ docker pull ghcr.io/menherabot/amandinha:latest
 2. 🏃‍♂️ Running a Container
 
 ```bash
-docker run --name PicassoServer -p 2080:2080 -e "API_TOKEN=ReplaceWithToken" -e "MENHERA_AGENT=Agent??Yes!Agent" --restart unless-stopped -d -t picasso
+docker run --name PicassoServer -p 2080:2080 -e "API_TOKEN=ReplaceWithToken" -e "MENHERA_AGENT=Agent??Yes!Agent" --restart unless-stopped -d -t ghcr.io/menherabot/piacsso:latest
 ```
 
 > Obs: the `API_TOKEN` and `MENHERA_AGENT` are just for authentication purpuses. The `restart` policy used is because, well, no one wants a server down!
