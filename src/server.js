@@ -7,7 +7,7 @@ const routes = require('./routes')
 const { Server } = require('ws')
 const { isAuthorized } = require('./utils/isAuthorized')
 const WebSocketController = require('./controllers/WebSocketController')
-const Redis = require('./utils/CacheManager').getInstance()
+// const Redis = require('./utils/CacheManager').getInstance()
 
 const initServer = async () => {
   const serverStartedAt = Date.now()
@@ -88,13 +88,13 @@ app.get('/test', async (_, res) => {
   })
 
   app.get('/ping', async (_, res) => {
-    const startTime = Date.now();
-    Redis.online ? await Redis.client.ping() : 'OFFLINE'
-    const redisPing = Date.now() - startTime;
+    // const startTime = Date.now();
+    // Redis.online ? await Redis.client.ping() : 'OFFLINE'
+    // const redisPing = Date.now() - startTime;
     res.status(200).json({
       http: { uptime: Date.now() - serverStartedAt },
       ws: [...ws.clients.values()].map(a => ({ id: Number(a.id), ping: a.responseTime, uptime: Date.now() - a.uptime })),
-      redis: Redis.online ? `${redisPing}ms` : 'OFFLINE'
+      // redis: Redis.online ? `${redisPing}ms` : 'OFFLINE'
     })
   })
 
