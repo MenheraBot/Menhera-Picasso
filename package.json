@@ -4,7 +4,7 @@
   "description": "Menhera Picasso is an application to handle image rendering for MenheraBot",
   "main": "src/server.js",
   "scripts": {
-    "start": "node -r dotenv/config  .",
+    "start": "node .",
     "dev": "nodemon .",
     "docker": "docker build -t picasso:$npm_package_version . && docker run -d --restart unless-stopped -p 2080:2080 --name PicassoServer picasso:$npm_package_version"
   },
@@ -23,7 +23,6 @@
     "@discordjs/collection": "^0.6.0",
     "canvas": "^2.9.1",
     "cors": "^2.8.5",
-    "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "millify": "^4.0.0",
     "redis": "^4.1.0",
