@@ -27,6 +27,8 @@ const buildProfileImage = async (user, usageCommands, i18n) => {
   ctx.fillStyle = darkestThanTheDarkerColor;
   ctx.roundRect(890, 250, 180, 200, 20, true, true);
 
+  console.log('LOAD AVATAR')
+
   // Avatar do usuário
   const userAvatar = await CanvasImport.loadImage(user.avatar).catch(er => console.log(er));
   const roundedImage = await ctx.roundImageCanvas(userAvatar, 250, 250);
@@ -36,6 +38,9 @@ const buildProfileImage = async (user, usageCommands, i18n) => {
   ctx.fill();
   ctx.closePath();
   ctx.drawImage(roundedImage, 0, 0, 240, 240);
+
+
+  console.log('LOAD AVATAR')
 
   // Nick do usuário
   ctx.fillStyle = '#fff';
@@ -70,6 +75,7 @@ const buildProfileImage = async (user, usageCommands, i18n) => {
   ctx.fillStyle = 'white';
 
 
+  console.log('USAGES')
   if (usageCommands) {
     const usedCommands = usageCommands.cmds.count;
     const mostUsedCommand = usageCommands.array[0];
@@ -77,6 +83,7 @@ const buildProfileImage = async (user, usageCommands, i18n) => {
     ctx.strokeText(ctx.getLines(`${user.username} ${i18n.zero} ${usedCommands} ${i18n.um} ${captalize(mostUsedCommand?.name ?? 'owo')}, ${i18n.dois} ${mostUsedCommand?.count ?? 'nha'} ${i18n.tres}`, 1000).join('\n'), 20, 600);
   }
 
+  console.log('marry')
   // Casado
   if (user.marry !== null) {
     const ringEmoji = await CanvasImport.loadImage(ProfileBadges.Badges['ring']).catch(er => console.log(er));
@@ -99,10 +106,15 @@ const buildProfileImage = async (user, usageCommands, i18n) => {
   ctx.fillText(user.mamou, 980, 425);
   ctx.strokeText(user.mamou, 980, 425);
 
+  
+  console.log('badges')
   const badgesImages = await ProfileBadges.GetBadges(user).catch(er => console.log(er));
 
+  
+  console.log('wait')
   ProfileBadges.drawBadges(ctx, badgesImages, 230, 170);
 
+  console.log('draw retrn')
   return canvas.toBuffer();
 }
 

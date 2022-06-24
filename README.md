@@ -12,6 +12,10 @@
   </p>
 </p>
 
+# ⚠️ THIS PROJECT HAVE BEEN DISCONTINUED ⚠️
+
+**In order to provide a better user experience, this project has been discontinued. This project is no longer maintained and will be archived soon. But not everything is bad. Menhera Picasso has a substitute. Visit [Menhera Van GOgh](https://github.com/MenheraBot/MenheraVanGOgh), It is pretty the same thing, but is made in GoLang. Thank you.**
+
 ## 👨‍💻 | Contributing
 
 You may contribute to this project by opening an issue or creating a pull request on GitHub. If you want to add a new asset, you need to follow this document, and send the asset to [MenheraBot's Suppport Server](https://discord.com/invite/fZMdQbA).

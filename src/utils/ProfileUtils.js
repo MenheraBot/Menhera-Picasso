@@ -34,6 +34,7 @@ const DiscordFlagsToMenheraBadges = {
 const getUserBadgesLink = async (user) => {
   const images = [];
 
+  console.log('FLASGARRAY')
   if (user.flagsArray?.length > 0) {
     user.flagsArray.map(async a => {
       if (!user.hiddingBadges.includes(DiscordFlagsToMenheraBadges[a])) {
@@ -45,31 +46,40 @@ const getUserBadgesLink = async (user) => {
     })
   }
 
+  console.log('casado')
   if (user?.casado !== null) {
     const ringEmoji = await CanvasImport.loadImage(ProfileBadges['ring']).catch(er => console.log(er));
     images.push(ringEmoji);
   }
 
+  console.log('vote')
   if (user.voteCooldown && parseInt(user?.voteCooldown) > Date.now()) {
     const voteEmoji = await CanvasImport.loadImage(ProfileBadges['vote']).catch(er => console.log(er));
     images.push(voteEmoji);
   }
 
+  console.log('100')
   if (user.votos > 100) {
     const hundredVoteEmoji = await CanvasImport.loadImage(ProfileBadges['hundred']).catch(er => console.log(er));
     images.push(hundredVoteEmoji);
   }
 
+  console.log('load cada')
   if (user.badges?.length > 0) {
     for (const i in user.badges) {
       const { id } = user.badges[i];
       if (!user.hiddingBadges.includes(id)) {
         const buffer = ProfileBadges[id];
+
+        console.log('load badge' + id)
         const img = await CanvasImport.loadImage(buffer).catch(er => console.log(er));
+        console.log('loadDEEEDDDD badge' + id)
         images.push(img);
       }
     }
   }
+
+  console.log(images)
 
   return images;
 }
